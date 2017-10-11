@@ -1,0 +1,798 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="rxjava," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="为什么写这个rxjava+retrofit已经火的燃起来了，之前看了，但因为项目的原因（好吧，老大不换我有什么办法）一直没用起来。需求又比较紧，导致我又要忘完了，所以果断写下来，这里就是个备忘录，所以不会写太细的。如果要详细看的话，这里有一个翻译，我觉得讲的还是挺好的。 添加依赖compile &amp;apos;io.reactivex:rxandroid:1.2.1&amp;apos; compile &amp;ap">
+<meta name="keywords" content="rxjava">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rxJava&amp;&amp;rxAndroid">
+<meta property="og:url" content="http://dennisce.com/2016/03/20/android/rxjava/index.html">
+<meta property="og:site_name" content="dennisce">
+<meta property="og:description" content="为什么写这个rxjava+retrofit已经火的燃起来了，之前看了，但因为项目的原因（好吧，老大不换我有什么办法）一直没用起来。需求又比较紧，导致我又要忘完了，所以果断写下来，这里就是个备忘录，所以不会写太细的。如果要详细看的话，这里有一个翻译，我觉得讲的还是挺好的。 添加依赖compile &amp;apos;io.reactivex:rxandroid:1.2.1&amp;apos; compile &amp;ap">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2016-07-13T06:08:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rxJava&amp;&amp;rxAndroid">
+<meta name="twitter:description" content="为什么写这个rxjava+retrofit已经火的燃起来了，之前看了，但因为项目的原因（好吧，老大不换我有什么办法）一直没用起来。需求又比较紧，导致我又要忘完了，所以果断写下来，这里就是个备忘录，所以不会写太细的。如果要详细看的话，这里有一个翻译，我觉得讲的还是挺好的。 添加依赖compile &amp;apos;io.reactivex:rxandroid:1.2.1&amp;apos; compile &amp;ap">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://dennisce.com/2016/03/20/android/rxjava/"/>
+
+
+
+
+
+  <title>rxJava&&rxAndroid | dennisce</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82920431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">dennisce</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my show time</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://dennisce.com/2016/03/20/android/rxjava/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dennis huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dennisce">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">rxJava&&rxAndroid</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-03-20T16:06:00+08:00">
+                2016-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/rxjava/" itemprop="url" rel="index">
+                    <span itemprop="name">rxjava</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="为什么写这个"><a href="#为什么写这个" class="headerlink" title="为什么写这个"></a>为什么写这个</h1><p>rxjava+retrofit已经火的燃起来了，之前看了，但因为项目的原因（好吧，老大不换我有什么办法）一直没用起来。需求又比较紧，导致我又要忘完了，所以果断写下来，这里就是个备忘录，所以不会写太细的。<br>如果要详细看的话，这里有一个翻译，我觉得讲的还是挺好的。</p>
+<h1 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h1><pre><code>compile &apos;io.reactivex:rxandroid:1.2.1&apos;
+compile &apos;io.reactivex:rxjava:1.1.6&apos;
+</code></pre><p>对，我还添加了rxandroid得支持。从1.0之后，rxandroid进行了拆分，rxandroid只剩下了AndroidSchedulers。其他的拆分为了RxBinding，RxLifecycle。<br>对，我还添加retrolambda的支持。具体见<a href="https://github.com/evant/gradle-retrolambda" target="_blank" rel="external">retrolambda</a></p>
+<h1 id="创建被观察者和观察者并订阅"><a href="#创建被观察者和观察者并订阅" class="headerlink" title="创建被观察者和观察者并订阅"></a>创建被观察者和观察者并订阅</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Observable&lt;String&gt; observable = Observable.create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;</div><div class="line">         subscriber.onNext(<span class="string">"A"</span>);</div><div class="line">         subscriber.onNext(<span class="string">"B"</span>);</div><div class="line">         subscriber.onCompleted();</div><div class="line">     &#125;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>创建observable（被观察者），可以看到利用subscriber发送了3个事件。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Subscriber&lt;String&gt; subscriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"onCompleted"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line">        Log.d(TAG, <span class="string">"onError"</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        Log.d(TAG, s);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>创建 Subscriber（观察者），可以看到有onCompleted，onError，onNext三个方法，刚好对应observable的三个方法（什么，你没看到onError，是因为我没写好伐），其实，onError会在发生异常时自动调用。同时，在onError发生的时候，会停止掉剩下的所有代码，意思就是你不要在onError后面再写东西了。另外，onError和onCompleted是互斥的，只会发生一个。</p>
+<p><code>observable.subscribe(subscriber);</code><br>将二者关联。</p>
+<h1 id="快速创建Observable"><a href="#快速创建Observable" class="headerlink" title="快速创建Observable"></a>快速创建Observable</h1><h2 id="just"><a href="#just" class="headerlink" title="just"></a>just</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="string">"111"</span>,<span class="string">"2222"</span>,<span class="string">"3333"</span>).subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"></div><div class="line">     <span class="meta">@Override</span></div><div class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line"></div><div class="line">     &#125;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<p>快捷创建一个observable，将参数依次发送出来。</p>
+<h2 id="from"><a href="#from" class="headerlink" title="from"></a>from</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</div><div class="line">    data.add(<span class="string">"form"</span> + i);</div><div class="line">&#125;</div><div class="line">Observable.from(data).subscribe(<span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">        Log.d(TAG, s);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>快速创建一个observable，将集合数组等中的数据逐一取出，并发送。</p>
+<h1 id="变换"><a href="#变换" class="headerlink" title="变换"></a>变换</h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable.from(data).map(<span class="keyword">new</span> Func1&lt;String, Integer&gt;() &#123;</div><div class="line">       <span class="meta">@Override</span></div><div class="line">       <span class="function"><span class="keyword">public</span> Integer <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</div><div class="line">           <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">       &#125;</div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<p>将String全部转成int 1；</p>
+<h2 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a>flatMap</h2><p>他可以将一个传入参数进行转换，并且返回一个新的observable。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">List&lt;String&gt; data = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line">     <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">200</span>; i++) &#123;</div><div class="line">         data.add(<span class="string">"form"</span> + i);</div><div class="line">     &#125;</div><div class="line">     Observable.from(data).flatMap(<span class="keyword">new</span> Func1&lt;String, Observable&lt;?&gt;&gt;() &#123;</div><div class="line">         <span class="meta">@Override</span></div><div class="line">         <span class="keyword">public</span> Observable&lt;?&gt; call(String s) &#123;</div><div class="line">             <span class="keyword">return</span> Observable.just(s);</div><div class="line">         &#125;</div><div class="line">     &#125;).subscribe(s-&gt;Log.d(TAG,<span class="string">"hdc"</span>+s));</div></pre></td></tr></table></figure>
+<p>好，是不是突然发现这里有个<code>s-&gt;Log.d(TAG,&quot;hdc&quot;+s)</code>,其实就是lambda表达式，所以其实如果你用用lambda，上面这个代码完全可以变成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Observable.from(data).flatMap(s -&gt; Observable.just(s)).subscribe(s1 -&gt; &#123;Log.d(TAG, s1);</div></pre></td></tr></table></figure></p>
+<p>是不是很方便？！</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1> <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Observable.just(<span class="string">"1111"</span>)</div><div class="line">             .observeOn(Schedulers.io())</div><div class="line">             .map(s -&gt; &#123;Log.d(TAG, Thread.currentThread().getName() + <span class="string">"  io"</span>);<span class="keyword">return</span> s;&#125;)</div><div class="line">             .observeOn(Schedulers.newThread())</div><div class="line">             .map(s1 -&gt;&#123;Log.d(TAG, Thread.currentThread().getName() + <span class="string">"  newThread"</span>);<span class="keyword">return</span> s1;&#125;)</div><div class="line">             .subscribe();</div></pre></td></tr></table></figure>
+<p> subscribeOn指定被观察者运行的线程。<br> observeOn指定后面代码运行线程<br> 比如上诉代码就是切换了两次线程，日志信息如下</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">03-20 17:59:08.792 10925-10925/com.dennisce.demotest D/com.dennisce.demotest.MainActivity: main  method</div><div class="line">03-20 17:59:08.793 10925-10964/com.dennisce.demotest D/com.dennisce.demotest.MainActivity: RxIoScheduler-2  io</div><div class="line">03-20 17:59:08.797 10925-11143/com.dennisce.demotest D/com.dennisce.demotest.MainActivity: RxNewThreadScheduler-2  newThread</div></pre></td></tr></table></figure>
+<h1 id="rxBinding"><a href="#rxBinding" class="headerlink" title="rxBinding"></a>rxBinding</h1><p><a href="https://github.com/JakeWharton/RxBinding" target="_blank" rel="external">戳我去官网</a></p>
+<p>简单使用，比如你有一个btn。如果使用rxBinding怎么监听点击呢。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">RxView.clicks(btn1)</div><div class="line">              .subscribe(s -&gt; &#123;</div><div class="line">                  test();</div><div class="line">              &#125;);</div></pre></td></tr></table></figure>
+<p>其实利用rxBinding可以很方便的实现一些功能，比如防止快速点击view。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">RxView.clicks(btn1)</div><div class="line">              .throttleFirst(<span class="number">500</span>, TimeUnit.MILLISECONDS)</div><div class="line">              .subscribe(s -&gt; &#123;</div><div class="line">                  test();</div><div class="line">              &#125;);</div></pre></td></tr></table></figure>
+<p>这样就可以了。</p>
+<h1 id="注意事项，一定要看，一定要看"><a href="#注意事项，一定要看，一定要看" class="headerlink" title="注意事项，一定要看，一定要看"></a>注意事项，一定要看，一定要看</h1><p>  如果你使用了代码混淆，一定要排除rxjava</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">-dontwarn sun.misc.**</div><div class="line"></div><div class="line">-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* &#123;</div><div class="line">   long producerIndex;</div><div class="line">   long consumerIndex;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef &#123;</div><div class="line">    rx.internal.util.atomic.LinkedQueueNode producerNode;</div><div class="line">&#125;</div><div class="line"></div><div class="line">-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef &#123;</div><div class="line">    rx.internal.util.atomic.LinkedQueueNode consumerNode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rxjava/" rel="tag"># rxjava</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/11/react-native/ReactNative-lifecycle/" rel="next" title="ReactNative生命周期">
+                <i class="fa fa-chevron-left"></i> ReactNative生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/04/10/android/retrofit/" rel="prev" title="retrofit2">
+                retrofit2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
+               alt="Dennis huang" />
+          <p class="site-author-name" itemprop="name">Dennis huang</p>
+           
+              <p class="site-description motion-element" itemprop="description">just a blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamdennisme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamdennisme" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/Dennis.huang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么写这个"><span class="nav-number">1.</span> <span class="nav-text">为什么写这个</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#添加依赖"><span class="nav-number">2.</span> <span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#创建被观察者和观察者并订阅"><span class="nav-number">3.</span> <span class="nav-text">创建被观察者和观察者并订阅</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速创建Observable"><span class="nav-number">4.</span> <span class="nav-text">快速创建Observable</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#just"><span class="nav-number">4.1.</span> <span class="nav-text">just</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#from"><span class="nav-number">4.2.</span> <span class="nav-text">from</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#变换"><span class="nav-number">5.</span> <span class="nav-text">变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#map"><span class="nav-number">5.1.</span> <span class="nav-text">map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#flatMap"><span class="nav-number">5.2.</span> <span class="nav-text">flatMap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">6.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rxBinding"><span class="nav-number">7.</span> <span class="nav-text">rxBinding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注意事项，一定要看，一定要看"><span class="nav-number">8.</span> <span class="nav-text">注意事项，一定要看，一定要看</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dennis huang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

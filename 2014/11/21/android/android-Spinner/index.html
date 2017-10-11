@@ -1,0 +1,818 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,AndroidDemo," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="#Spinner 提供一个下拉选单，用于在一堆数据列表中选择一个值，未展开显示当前选中的值，点击后出现选单，展示所有可选择的值，可选择新值。 #简单实现 ##xml 12345&amp;lt;Spinner   android:id=&quot;@+id/spinner&quot;   android:layout_width=&quot;wrap_content&quot;   android:layout_height=&quot;wrap_cont">
+<meta name="keywords" content="Android,AndroidDemo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spinner">
+<meta property="og:url" content="http://dennisce.com/2014/11/21/android/android-Spinner/index.html">
+<meta property="og:site_name" content="dennisce">
+<meta property="og:description" content="#Spinner 提供一个下拉选单，用于在一堆数据列表中选择一个值，未展开显示当前选中的值，点击后出现选单，展示所有可选择的值，可选择新值。 #简单实现 ##xml 12345&amp;lt;Spinner   android:id=&quot;@+id/spinner&quot;   android:layout_width=&quot;wrap_content&quot;   android:layout_height=&quot;wrap_cont">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner1.gif">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner2.gif">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner3.gif">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner4.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner5.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner6.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner7.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner8.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner9.gif">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner10.png">
+<meta property="og:updated_time" content="2017-01-17T07:20:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spinner">
+<meta name="twitter:description" content="#Spinner 提供一个下拉选单，用于在一堆数据列表中选择一个值，未展开显示当前选中的值，点击后出现选单，展示所有可选择的值，可选择新值。 #简单实现 ##xml 12345&amp;lt;Spinner   android:id=&quot;@+id/spinner&quot;   android:layout_width=&quot;wrap_content&quot;   android:layout_height=&quot;wrap_cont">
+<meta name="twitter:image" content="http://o8zwyxgy9.bkt.clouddn.com/spinner1.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://dennisce.com/2014/11/21/android/android-Spinner/"/>
+
+
+
+
+
+  <title>Spinner | dennisce</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82920431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">dennisce</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my show time</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://dennisce.com/2014/11/21/android/android-Spinner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dennis huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dennisce">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spinner</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2014-11-21T20:50:00+08:00">
+                2014-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/AndroidDemo/" itemprop="url" rel="index">
+                    <span itemprop="name">AndroidDemo</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#Spinner</p>
+<p>提供一个下拉选单，用于在一堆数据列表中选择一个值，未展开显示当前选中的值，点击后出现选单，展示所有可选择的值，可选择新值。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner1.gif" alt="spinner"></p>
+<p>#简单实现</p>
+<p>##xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Spinner</span></span></div><div class="line"><span class="tag">   <span class="attr">android:id</span>=<span class="string">"@+id/spinner"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:entries</span>=<span class="string">"@array/phone"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<p>一些属性：</p>
+<ul>
+<li><p>android:spinnerMode=”dialog”:<br> 这个属性定义了spinner的展现方式，有两种<em>dialog</em>和<em>dropdown</em>。分别是弹窗和下拉</p>
+<p> dialog</p>
+<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner2.gif" alt=""></p>
+<p> dropdown</p>
+<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner3.gif" alt=""></p>
+</li>
+<li><p><code>android:entries</code>其实是定义了spinner菜单里的数据，这里指向了array。</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"phone"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>android<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>iPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>windowsPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但其实在java代码中也可以添加数据。先简单实现</p>
+<ul>
+<li><code>android:prompt=&quot;@string/title&quot;</code>如果是dialog模式，显示tiitle<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner4.png" alt=""></li>
+</ul>
+<p>##java</p>
+<p>简单使用的话，就一个<code>setOnItemSelectedListener</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">spinner.setOnItemSelectedListener(<span class="keyword">new</span> AdapterView.OnItemSelectedListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemSelected</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onItemSelected"</span>);</div><div class="line">                String[] arrs = getResources().getStringArray(R.array.phone);</div><div class="line">                ToastUtil.show(mContext, arrs[position]);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNothingSelected</span><span class="params">(AdapterView&lt;?&gt; parent)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onNothingSelected"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<p>可以看到两个回调<code>onItemSelected</code>和<code>onNothingSelected</code></p>
+<ul>
+<li><p>关于<code>onItemSelected</code><br>这个方法是在你改变了spinner的选择值时触发。两个注意点：</p>
+<ul>
+<li>默认值也会触发这个回调。在spinner实现完成，就算没有主动去选择值，但会默认显示一个，这个时候也会触发回调.<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner5.png" alt=""></li>
+<li>如果你对spinner进行了操作，但是并没有改变当前spinner的值，那是不会触发这个回调的。</li>
+</ul>
+</li>
+<li>关于<code>onNothingSelected</code>，会在后面说到</li>
+</ul>
+<p>#Spinner的Adapter<br>上面我们说到，其实可以不用xml来绑定spinner的数据，那就需要adapter来绑定数据</p>
+<p>##实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ArrayAdapter&lt;String&gt; adapter =<span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>,android.R.layout.simple_spinner_item,data); </div><div class="line"></div><div class="line">adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</div><div class="line">spinner.setAdapter(adapter);</div></pre></td></tr></table></figure>
+<p>是不是感觉好面熟，这个套路，对，简直和listview一模一样对不对。</p>
+<p>but，你肯定发现了。<code>setDropDownViewResource</code>是什么，好吧<br>官方解释</p>
+<p>Sets the layout resource to create the drop down views.<br>因为adapter的第二个参数设置的样式是其没有展开时的样式，而这里是设置下拉展开的样式。</p>
+<p>对，你是不是发现了什么，我们可以通过<code>setDropDownViewResource</code>来自定义spinner的样式。举个栗子，如果你不设置样式。样式是这样的。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner6.png" alt=""><br>如果加上样式呢？<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner7.png" alt=""><br>我们设置的其实就是android默认实现的一个样式<code>android.R.layout.simple_spinner_dropdown_item</code></p>
+<p>当然，我们也可以自己实现自己的样式。<br>其实和listview自定义adapter是一样的，对，一模一样哒，</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpinnerAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;User&gt; data;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SpinnerAdapter</span><span class="params">(Context mContext, List&lt;User&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">        <span class="keyword">this</span>.mContext = mContext;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</div><div class="line">        ViewHolder holder;</div><div class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</div><div class="line">            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_user, <span class="keyword">null</span>);</div><div class="line">            holder = <span class="keyword">new</span> ViewHolder();</div><div class="line">            holder.ivAvatar = (ImageView) convertView.findViewById(R.id.iv_avatar);</div><div class="line">            holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);</div><div class="line">            convertView.setTag(holder);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        User user = data.get(position);</div><div class="line">        <span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</div><div class="line">            holder.ivAvatar.setImageResource(user.getAvator());</div><div class="line">            <span class="keyword">if</span> (user.getName() != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.tvName.setText(user.getName());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        ImageView ivAvatar;</div><div class="line">        TextView tvName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里定义了一个用户的头像和一个用户名的样式。<br>效果如图<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner8.png" alt=""></p>
+<p>之前我们提到一个回调，<code>onNothingSelected</code>，这个方法的触发机制其实是在你的adapter的数据为空时回调。<br>添加一个按钮</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">btnClean.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">               dataUser.removeAll(dataUser);</div><div class="line">               spinnerAdapter.notifyDataSetChanged();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner9.gif" alt=""></p>
+<p>同时，可以看到<code>onNothingSelected</code>触发。</p>
+<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner10.png" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/AndroidDemo/" rel="tag"># AndroidDemo</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/11/15/android/ViewPager/" rel="next" title="Android控件—viewPager">
+                <i class="fa fa-chevron-left"></i> Android控件—viewPager
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/11/28/android/android-Menu/" rel="prev" title="Menu">
+                Menu <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
+               alt="Dennis huang" />
+          <p class="site-author-name" itemprop="name">Dennis huang</p>
+           
+              <p class="site-description motion-element" itemprop="description">just a blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamdennisme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamdennisme" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/Dennis.huang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dennis huang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

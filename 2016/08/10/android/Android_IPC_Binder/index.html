@@ -1,0 +1,837 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,ipc,binder," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="Android的IPC机制menu:链接 Binder是个什么鬼？Binder是android中的一个类，继承自IBinder，他是android中的一种跨进程通讯方式， 使用AIdl实现binder创建aidl实例创建Person.java，IPersonManager.aidl，Person.aidl 三个文件person.java正常的java类。创建一个bean实现 Parcelable1">
+<meta name="keywords" content="Android,ipc,binder">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android-IPC-Binder—AIDL创建">
+<meta property="og:url" content="http://dennisce.com/2016/08/10/android/Android_IPC_Binder/index.html">
+<meta property="og:site_name" content="dennisce">
+<meta property="og:description" content="Android的IPC机制menu:链接 Binder是个什么鬼？Binder是android中的一个类，继承自IBinder，他是android中的一种跨进程通讯方式， 使用AIdl实现binder创建aidl实例创建Person.java，IPersonManager.aidl，Person.aidl 三个文件person.java正常的java类。创建一个bean实现 Parcelable1">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-02-13T07:16:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android-IPC-Binder—AIDL创建">
+<meta name="twitter:description" content="Android的IPC机制menu:链接 Binder是个什么鬼？Binder是android中的一个类，继承自IBinder，他是android中的一种跨进程通讯方式， 使用AIdl实现binder创建aidl实例创建Person.java，IPersonManager.aidl，Person.aidl 三个文件person.java正常的java类。创建一个bean实现 Parcelable1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://dennisce.com/2016/08/10/android/Android_IPC_Binder/"/>
+
+
+
+
+
+  <title>Android-IPC-Binder—AIDL创建 | dennisce</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82920431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">dennisce</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my show time</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://dennisce.com/2016/08/10/android/Android_IPC_Binder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dennis huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dennisce">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android-IPC-Binder—AIDL创建</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-08-10T13:30:00+08:00">
+                2016-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/ipc/" itemprop="url" rel="index">
+                    <span itemprop="name">ipc</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/ipc/binder/" itemprop="url" rel="index">
+                    <span itemprop="name">binder</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android的IPC机制menu:<a href="http://www.dennisce.com/2016/06/14/android/android_IPC_meun/" target="_blank" rel="external">链接</a></p>
+<h1 id="Binder是个什么鬼？"><a href="#Binder是个什么鬼？" class="headerlink" title="Binder是个什么鬼？"></a>Binder是个什么鬼？</h1><p>Binder是android中的一个类，继承自IBinder，他是android中的一种跨进程通讯方式，</p>
+<h1 id="使用AIdl实现binder"><a href="#使用AIdl实现binder" class="headerlink" title="使用AIdl实现binder"></a>使用AIdl实现binder</h1><h2 id="创建aidl实例"><a href="#创建aidl实例" class="headerlink" title="创建aidl实例"></a>创建aidl实例</h2><p>创建Person.java，IPersonManager.aidl，Person.aidl 三个文件<br><strong>person.java</strong><br>正常的java类。创建一个bean<br>实现 <em>Parcelable</em><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.dennisce.ipctraining.aidl;</div><div class="line"></div><div class="line"><span class="keyword">import</span> android.os.Parcel;</div><div class="line"><span class="keyword">import</span> android.os.Parcelable;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Created by dennis on 16/06/2016.</span></div><div class="line"><span class="comment"> */</span></div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Parcelable</span> </span>&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">int</span> PersonAge;</div><div class="line">    <span class="keyword">public</span> String PersonName;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="title">Person</span><span class="params">(Parcel in)</span> </span>&#123;</div><div class="line">        PersonAge = in.readInt();</div><div class="line">        PersonName = in.readString();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Creator&lt;Person&gt; CREATOR = <span class="keyword">new</span> Creator&lt;Person&gt;() &#123;</div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="function"><span class="keyword">public</span> Person <span class="title">createFromParcel</span><span class="params">(Parcel in)</span> </span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Person(in);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="meta">@Override</span></div><div class="line">        <span class="keyword">public</span> Person[] newArray(<span class="keyword">int</span> size) &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Person[size];</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">describeContents</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeToParcel</span><span class="params">(Parcel parcel, <span class="keyword">int</span> i)</span> </span>&#123;</div><div class="line">        parcel.writeInt(PersonAge);</div><div class="line">        parcel.writeString(PersonName);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>Person.aidl</strong><br>其实也是个java类（后缀一样哦），只是创建方式有点变化<br>以AS为例：<br>右键bean所在package（目录不能错），<em>new</em>-><em>AIDL</em>-><em>AIDL FILE</em>，创建与bean同名的AIDL，创建成功后，可以看到项目下多了一个Aidl分类，在bean同样的package下出现一个Person.aidl<br>接下来需要修改person.aidl的内容<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.dennisce.ipctraining.aidl;</div><div class="line">parcelable Person;*</div></pre></td></tr></table></figure></p>
+<p>其实就是导入bean的包信息</p>
+<p><strong>IpersonManager.aidl</strong><br>创建方式与Persoin.aidl一致，这里刚才没提到的是，当你创建一个aidl后，会有默认方法存在。如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPersonManager</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * Demonstrates some basic types that you can use as parameters</span></div><div class="line"><span class="comment">     * and return values in AIDL.</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">basicTypes</span><span class="params">(<span class="keyword">int</span> anInt, <span class="keyword">long</span> aLong, <span class="keyword">boolean</span> aBoolean, <span class="keyword">float</span> aFloat,</span></span></div><div class="line"><span class="function"><span class="params">            <span class="keyword">double</span> aDouble, String aString)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>先删除原有方法，重新定义我们需要的方法，这里我们写上两个，分别是获取Person和增加Person的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// IBookManager.aidl</span></div><div class="line"><span class="keyword">package</span> com.dennisce.ipctraining.aidl;</div><div class="line"><span class="keyword">import</span> com.dennisce.ipctraining.aidl.Person;</div><div class="line"></div><div class="line"><span class="comment">// Declare any non-default types here with import statements</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPersonManager</span> </span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * Demonstrates some basic types that you can use as parameters</span></div><div class="line"><span class="comment">     * and return values in AIDL.</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    List&lt;Person&gt;getPersonList();</div><div class="line">     <span class="function"><span class="keyword">void</span> <span class="title">addPerson</span><span class="params">(in Person person)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里需要注意的是，如果使用了非基础数据类型，那就需要引入这个类，如上引入了Person。</p>
+<p>接下来，sync project。</p>
+<h2 id="IPersonManager-java"><a href="#IPersonManager-java" class="headerlink" title="IPersonManager.java"></a>IPersonManager.java</h2><p>如果没有报错的话，你应该可以在<em>build/generated/source/aidl路径</em>下面找到一个叫IPersonManager.java的类<br>这个是自动生成的，让我们来看下他是具体干嘛的呢？</p>
+<p>可以看到，这个类本身是继承自IInterFace，所以他本身就是一个Binder接口。<br>同时，内部还有一个Stub类，Stub类继承Binder实现了IPersonManager本身，这个类本身就是个Binder，<br>Stub还有一个内部类，proxy。<br>其次，便是我们定义的两个方法</p>
+<p><strong>DESCRIPTOR</strong><br>Binder 的标识，一般来说是当前Binder类名</p>
+<p><strong>asInterface</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> com.dennisce.ipctraining.aidl.<span class="function">IPersonManager <span class="title">asInterface</span><span class="params">(android.os.IBinder obj)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> ((obj == <span class="keyword">null</span>)) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    android.os.IInterface iin = obj.queryLocalInterface(DESCRIPTOR);</div><div class="line">    <span class="keyword">if</span> (((iin != <span class="keyword">null</span>) &amp;&amp; (iin <span class="keyword">instanceof</span> com.dennisce.ipctraining.aidl.IPersonManager))) &#123;</div><div class="line">        <span class="keyword">return</span> ((com.dennisce.ipctraining.aidl.IPersonManager) iin);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> com.dennisce.ipctraining.aidl.IPersonManager.Stub.Proxy(obj);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>看名字就知道是一个获取对象的方法，是将服务端的Binder对象转换为客户端需要的AIDL接口类型的对象。<br>其实可以可以看到，这里其实做了判断，如果客户端和服务端在同一进程，返回的是服务端的stub本身，如果不在同一进程，返回的封装后的Stub.proxy。</p>
+<p><strong>asBinder</strong><br>这是内部类Stub的方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">    <span class="keyword">public</span> android.os.<span class="function">IBinder <span class="title">asBinder</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>返回当前的Binder对象</p>
+<p><strong>onTransact</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">onTransact</span><span class="params">(<span class="keyword">int</span> code, android.os.Parcel data, android.os.Parcel reply, <span class="keyword">int</span> flags)</span> <span class="keyword">throws</span> android.os.RemoteException </span>&#123;</div><div class="line">           <span class="keyword">switch</span> (code) &#123;</div><div class="line">               <span class="keyword">case</span> INTERFACE_TRANSACTION: &#123;</div><div class="line">                   reply.writeString(DESCRIPTOR);</div><div class="line">                   <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">case</span> TRANSACTION_getPersonList: &#123;</div><div class="line">                   data.enforceInterface(DESCRIPTOR);</div><div class="line">                   java.util.List&lt;com.dennisce.ipctraining.aidl.Person&gt; _result = <span class="keyword">this</span>.getPersonList();</div><div class="line">                   reply.writeNoException();</div><div class="line">                   reply.writeTypedList(_result);</div><div class="line">                   <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">               &#125;</div><div class="line">               <span class="keyword">case</span> TRANSACTION_addPerson: &#123;</div><div class="line">                   data.enforceInterface(DESCRIPTOR);</div><div class="line">                   com.dennisce.ipctraining.aidl.Person _arg0;</div><div class="line">                   <span class="keyword">if</span> ((<span class="number">0</span> != data.readInt())) &#123;</div><div class="line">                       _arg0 = com.dennisce.ipctraining.aidl.Person.CREATOR.createFromParcel(data);</div><div class="line">                   &#125; <span class="keyword">else</span> &#123;</div><div class="line">                       _arg0 = <span class="keyword">null</span>;</div><div class="line">                   &#125;</div><div class="line">                   <span class="keyword">this</span>.addPerson(_arg0);</div><div class="line">                   reply.writeNoException();</div><div class="line">                   <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">           <span class="keyword">return</span> <span class="keyword">super</span>.onTransact(code, data, reply, flags);</div><div class="line">       &#125;</div></pre></td></tr></table></figure></p>
+<p>此方法运行在服务端的Binder线程池中，当客户端发起请求时，远程请求会通过系统底层封装交给这个方法来处理</p>
+<p>可以看到，此方法的参数中code，这个code是用来判定客户端的目标方法是什么？<br>比如我们这里就有三个</p>
+<p>1.INTERFACE_TRANSACTION<br>2.TRANSACTION_getPersonList<br>3.TRANSACTION_addPerson</p>
+<p>可以看到2、3其实是我们定义方法，但是第一个是什么？<br>google很久，发现没什么描述，仅仅在google关于IBinder的描述中看到</p>
+<blockquote>
+<p>IBinder protocol transaction code: interrogate the recipient side of the transaction for its canonical interface descriptor.</p>
+</blockquote>
+<p>根据描述查看是典型的接口描述符。但是我现在还没发现干啥的</p>
+<p>此方法如果return false，则客户端请求失败。</p>
+<p><strong>getPersonList</strong></p>
+<p>此方法先创建了输入型对象_data,输出型对象_reply,返回结果对象result</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">android.os.Parcel _data = android.os.Parcel.obtain();</div><div class="line">                android.os.Parcel _reply = android.os.Parcel.obtain();</div><div class="line">                java.util.List&lt;com.dennisce.ipctraining.aidl.Person&gt; _result;</div></pre></td></tr></table></figure>
+<p>然后将方法的参数写入_data(前提是有)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_data.writeInterfaceToken(DESCRIPTOR);</div></pre></td></tr></table></figure>
+<p>接着用发起远程调用请求（RPC）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mRemote.transact(Stub.TRANSACTION_getPersonList, _data, _reply, <span class="number">0</span>);</div></pre></td></tr></table></figure>
+<p><em>readException</em>是用来处理异常的</p>
+<p>然后使用_reply取得获取结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">_result = _reply.createTypedArrayList(com.dennisce.ipctraining.aidl.Person.CREATOR);</div></pre></td></tr></table></figure>
+<p>返回结果</p>
+<p><strong>addPerson</strong></p>
+<p>方法执行和getPersonList一致，只是因为没有返回值，不需要取出值并返回。</p>
+<h1 id="不使用ADIL创建Binder"><a href="#不使用ADIL创建Binder" class="headerlink" title="不使用ADIL创建Binder"></a>不使用ADIL创建Binder</h1><p>ADIL生成了一个模板，其实可以可以参照模板写一个Binder不使用AIDL（干嘛要自己写。。）</p>
+<p><strong>上面就是Binder的一些介绍</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/ipc/" rel="tag"># ipc</a>
+          
+            <a href="/tags/binder/" rel="tag"># binder</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/07/android/Android_IPC_android_ipc_base/" rel="next" title="Android多进程初步介绍">
+                <i class="fa fa-chevron-left"></i> Android多进程初步介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/15/android/Android_IPC_Ways/" rel="prev" title="Android-IPC的方式">
+                Android-IPC的方式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
+               alt="Dennis huang" />
+          <p class="site-author-name" itemprop="name">Dennis huang</p>
+           
+              <p class="site-description motion-element" itemprop="description">just a blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamdennisme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamdennisme" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/Dennis.huang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Binder是个什么鬼？"><span class="nav-number">1.</span> <span class="nav-text">Binder是个什么鬼？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用AIdl实现binder"><span class="nav-number">2.</span> <span class="nav-text">使用AIdl实现binder</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建aidl实例"><span class="nav-number">2.1.</span> <span class="nav-text">创建aidl实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IPersonManager-java"><span class="nav-number">2.2.</span> <span class="nav-text">IPersonManager.java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#不使用ADIL创建Binder"><span class="nav-number">3.</span> <span class="nav-text">不使用ADIL创建Binder</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dennis huang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

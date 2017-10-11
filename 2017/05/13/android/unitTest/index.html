@@ -1,0 +1,815 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="最近学习了下AS下的单元测试，所以准备一边学习一边写记录博客（想想还是很激动，大学本来是立志要去做自动化测试的。然而……） Teaching Is The Best Way To Learn 为什么我们要做单元测试减少bug   从项目最小单元（方法）确保代码的可靠性，确保每个最小单元的正确，从而确保所有单元构成的整体项目的正确性 提高代码质量  因为要做单元测试，迫使做单元测试时隔离外部依赖，减">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写一点单元测试">
+<meta property="og:url" content="http://dennisce.com/2017/05/13/android/unitTest/index.html">
+<meta property="og:site_name" content="dennisce">
+<meta property="og:description" content="最近学习了下AS下的单元测试，所以准备一边学习一边写记录博客（想想还是很激动，大学本来是立志要去做自动化测试的。然而……） Teaching Is The Best Way To Learn 为什么我们要做单元测试减少bug   从项目最小单元（方法）确保代码的可靠性，确保每个最小单元的正确，从而确保所有单元构成的整体项目的正确性 提高代码质量  因为要做单元测试，迫使做单元测试时隔离外部依赖，减">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/unitTest01.png">
+<meta property="og:image" content="http://o8zwyxgy9.bkt.clouddn.com/unitTest2.png">
+<meta property="og:updated_time" content="2017-10-11T02:18:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="写一点单元测试">
+<meta name="twitter:description" content="最近学习了下AS下的单元测试，所以准备一边学习一边写记录博客（想想还是很激动，大学本来是立志要去做自动化测试的。然而……） Teaching Is The Best Way To Learn 为什么我们要做单元测试减少bug   从项目最小单元（方法）确保代码的可靠性，确保每个最小单元的正确，从而确保所有单元构成的整体项目的正确性 提高代码质量  因为要做单元测试，迫使做单元测试时隔离外部依赖，减">
+<meta name="twitter:image" content="http://o8zwyxgy9.bkt.clouddn.com/unitTest01.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://dennisce.com/2017/05/13/android/unitTest/"/>
+
+
+
+
+
+  <title>写一点单元测试 | dennisce</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82920431-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">dennisce</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">my show time</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://dennisce.com/2017/05/13/android/unitTest/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Dennis huang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="dennisce">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">写一点单元测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-13T18:21:00+08:00">
+                2017-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近学习了下AS下的单元测试，所以准备一边学习一边写记录博客（想想还是很激动，大学本来是立志要去做自动化测试的。然而……）</p>
+<p><em>Teaching Is The Best Way To Learn</em></p>
+<h1 id="为什么我们要做单元测试"><a href="#为什么我们要做单元测试" class="headerlink" title="为什么我们要做单元测试"></a>为什么我们要做单元测试</h1><h2 id="减少bug"><a href="#减少bug" class="headerlink" title="减少bug"></a>减少bug</h2><p>   从项目最小单元（方法）确保代码的可靠性，确保每个最小单元的正确，从而确保所有单元构成的整体项目的正确性</p>
+<h2 id="提高代码质量"><a href="#提高代码质量" class="headerlink" title="提高代码质量"></a>提高代码质量</h2><p>  因为要做单元测试，迫使做单元测试时隔离外部依赖，减少代码耦合</p>
+<h2 id="减少调试时间"><a href="#减少调试时间" class="headerlink" title="减少调试时间"></a>减少调试时间</h2><p>  额，不知道你们遇到过没有，我就改了一个字，竟然让我编译5分钟才能看到结果，看到结果后！什么，又错了，再改，再5分钟，再错。通过单元测试有个好处是，junit本地运行可能就几秒就结束了，可以节约很多你的生命。同样，如果调试你不是很熟悉的项目，一时找不到出错的类在哪里，但是如果写了单元测试。运行单元测试后，可以快速找到出错位置</p>
+<h2 id="提高重构时的稳定性"><a href="#提高重构时的稳定性" class="headerlink" title="提高重构时的稳定性"></a>提高重构时的稳定性</h2><p>  对，一个软件迟早要重构，但是这个人千万不要是我。为什么呢？重构，特别是重构自己不熟悉的代码，可能会造成牵一发动全身的情况，“我就改了一个方法竟然全部GG了，你在逗我？”，但是如果写了单元测试，在重构的时候，你只要保证每个方法，每个类的逻辑是正确的，可以一边重构一边运行，大大提高重构时的稳定性。</p>
+<h1 id="废话结束，开始看下怎么做呢"><a href="#废话结束，开始看下怎么做呢" class="headerlink" title="废话结束，开始看下怎么做呢"></a>废话结束，开始看下怎么做呢</h1><p>我们从下面这个类开始<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Calculator</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> one, <span class="keyword">int</span> another)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> one + another;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">multiply</span><span class="params">(<span class="keyword">int</span> one, <span class="keyword">int</span> another)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> one * another;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">division</span><span class="params">(<span class="keyword">int</span> one, <span class="keyword">int</span> another)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> one / another;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>可以看到这个类有三个方法，这三个方法可以看作是项目的最小单元。我们分别对3个方法做单元测试<br>可以怎样做呢？我们创建一个测试类来做测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</div><div class="line">        <span class="keyword">int</span> num = calculator.add(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">4</span>) &#123;</div><div class="line">            System.out.println(<span class="string">"add() cool"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            System.out.println(<span class="string">"add() shit"</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMultiply</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</div><div class="line">        <span class="keyword">int</span> num = calculator.multiply(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">3</span>) &#123;</div><div class="line">            System.out.println(<span class="string">"Multiply() cool"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            System.out.println(<span class="string">"Multiply() shit"</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>这里，我们来分析这两个方法<br>可以看到，其实从流程上来说。这两个方法都有共同之处，主要做了三件事情<br>准备工作，在这里是 Calculator calculator = new Calculator();<br>执行操作，这里是 int num = calculator.multiply(1, 3);<br>验证结果，这里是 if (num == 3)</p>
+<p>所有的case应当符合这三个原则。</p>
+<p>介绍完成。然后我们创建一个类，用静态方法来调用……..</p>
+<h2 id="单元测试框架Junit"><a href="#单元测试框架Junit" class="headerlink" title="单元测试框架Junit"></a>单元测试框架Junit</h2><p>用一个类的静态方法作为入口肯定是可以的，不过这样真的是太蠢了，非常的麻烦，而且测试类全部打包进了APK中，所以我们要借助单元测试框架。<br>使用AndroidStudio创建的项目，在创建完成的时候，你应该会看到你的项目结构应该是这样的<br><img src="http://o8zwyxgy9.bkt.clouddn.com/unitTest01.png" alt="unitTest"><br>第一个是你的app项目，那剩下两个是什么呢？<br>androidTest androidStudio生成的 androidUI层面的test目录，运行时需要编译APK。需要android编译环境，使用jacoco插件生成报告 Test andoridStudio生成的偏model层面的test目录，PC本地运行，不需要编译运行APK，使用intellij的插件生成报告</p>
+<p>android 2.0后已经可以主动识别两个目录了（低于2.0的请不要和我说话。这么久还不升级）<br>充满好奇的盆友应该可以看到，你创建新项目的时候，gradle自动引用了一个框架</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testCompile <span class="string">'junit:junit:4.12'</span></div></pre></td></tr></table></figure>
+<p>这个框架就是用来做单元测试的。我们来看下怎么用呢？</p>
+<p>首先，我们在test目录下新建一个测试类（因为这个类真的和UI没关系，就放Test下面就OK了）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123;</div><div class="line">        Calculator calculator = <span class="keyword">new</span> Calculator();</div><div class="line">        <span class="keyword">int</span> num = calculator.add(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">          <span class="keyword">if</span> (num==<span class="number">4</span>)&#123;</div><div class="line">            <span class="comment">//true</span></div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>看到这里，我都想喷了，换个位置说了这么多废话，其实不是的。<br>到这里，我们要依赖测试框架，对这个方法做一些优化</p>
+<h3 id="setup（主要准备环境运行）"><a href="#setup（主要准备环境运行）" class="headerlink" title="setup（主要准备环境运行）"></a>setup（主要准备环境运行）</h3><p>首先，我们从第一步，准备环境（setup）开始优化</p>
+<h4 id="Before注解"><a href="#Before注解" class="headerlink" title="@Before注解"></a>@Before注解</h4><p>可以看到，我们在CalculatorTest类中，如果要生成对应Calculator类中的加减乘除4个测试方法的话，我们要创建4次Calculator的实例，是不是有点烦躁呢？这个时候，<br>我们可以借助一个注解@Before<br>被@Before标记的方法，在每个测试方法执行前，都会执行一次。<br>我们可以利用@Before方法来完成初始化环境 setup的流程，代码修改后就成了这样<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CalculatorTest</span> </span>&#123;</div><div class="line">    Calculator mCalculator;</div><div class="line"></div><div class="line">    <span class="meta">@Before</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setup</span><span class="params">()</span> </span>&#123;</div><div class="line">        mCalculator = <span class="keyword">new</span> Calculator();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAdd</span><span class="params">()</span> </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">int</span> num = mCalculator.add(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">4</span>) &#123;</div><div class="line">            <span class="comment">//true</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testMultiply</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">int</span> num = mCalculator.multiply(<span class="number">1</span>, <span class="number">3</span>);</div><div class="line">        <span class="keyword">if</span> (num == <span class="number">3</span>) &#123;</div><div class="line">            <span class="comment">//true</span></div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="comment">//false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这样就实现了每个方法执行前初始化一次Calculator</p>
+<h4 id="After注解"><a href="#After注解" class="headerlink" title="@After注解"></a>@After注解</h4><p>开心不开心，有@before肯定就有@After，同理，@After是在每个方法执行完毕后执行<br>这里要提到一点，虽然验证了期望之后，应该测试流程已经结束了，但是很有可能在验证完毕后你需要做一些清理工作，比如黑盒测试过程中，你可能需要还原测试数据，当然，在单元测试中，你可能在之前的测试流程做了文件操作，打开了某个文件，那你在结束的时候也需要关闭他。</p>
+<h4 id="BeforeClass注解"><a href="#BeforeClass注解" class="headerlink" title="@BeforeClass注解"></a>@BeforeClass注解</h4><p>被这个注解表示的方法只在所有方法执行前执行一次，且被此注解标记的方法必须是一个静态方法<br><strong><em>must be static</em></strong></p>
+<h4 id="AfterClass注解"><a href="#AfterClass注解" class="headerlink" title="@AfterClass注解"></a>@AfterClass注解</h4><p>被这个注解表示的方法只在所有方法执行后执行一次，且被此注解标记的方法必须是一个静态方法<br><strong><em>must be static</em></strong></p>
+<h3 id="执行case"><a href="#执行case" class="headerlink" title="执行case"></a>执行case</h3><p>我们之前提到，我们不希望每次运行测试类的时候还需要定义一个静态方法来执行，这里我们需要借助一个@Test注解。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/unitTest2.png" alt="unitTest2"><br>这里我们仅仅添加了一个@Test，注意看左边，显示出来可运行的图标（点击方法名或者类名右键也可以运行）<br>这个算是解决了需要入口的问题，现在可以直接运行了。</p>
+<h3 id="验证结果"><a href="#验证结果" class="headerlink" title="验证结果"></a>验证结果</h3><p>我们之前验证结果的时候，需要自己判断num的值是否适配期望值，并对其输出结果，但实际上，当测试类过多时，直接LOG出来是完全不现实的，所以我们可能需要将结果生成报表。万幸的是，Junit已经为我们实现了这个功能。<br>Junit提供了一个<strong>Assert</strong>的类，这个类实现了大量的验证结果的方法。<br>如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    <span class="keyword">int</span> result=mTestUtil.add(<span class="number">1</span>,<span class="number">3</span>);</div><div class="line">    Assert.assertEquals(result,<span class="number">4</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">equalsObject</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">    String a=<span class="string">"abc"</span>;</div><div class="line">    String b=<span class="string">"abc"</span>;</div><div class="line">    String c=<span class="keyword">new</span> String(<span class="string">"abc"</span>);</div><div class="line">    Assert.assertEquals(<span class="keyword">true</span>,mTestUtil.equalsObject(a,b));</div><div class="line">    Assert.assertEquals(<span class="keyword">true</span>,mTestUtil.equalsObject(a,c));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="mock框架Mockito"><a href="#mock框架Mockito" class="headerlink" title="mock框架Mockito"></a>mock框架Mockito</h2><p><a href="http://site.mockito.org/" target="_blank" rel="external">项目官网</a></p>
+<p>在测试环境中，通过Mockito来mock出其他的依赖对象，用来替换真实的对象，使得待测的目标方法被隔离起来，避免一些外界因素的影响和依赖，能在我们预设的环境中执行，以达到两个目的：</p>
+<p>验证这个对象的某些方法的调用情况，调用了多少次，参数是什么等等;<br>指定这个对象的某些方法的行为，返回特定的值，或是执行特定的动作；</p>
+<p>配置</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testCompile <span class="string">"org.mockito:mockito-core:2.+"</span></div></pre></td></tr></table></figure>
+<p>先看下这份代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Test</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mockShow</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="comment">//mock数据</span></div><div class="line">    TestUtil testUtil=Mockito.mock(TestUtil.class);</div><div class="line">    Mockito.when(testUtil.add(<span class="number">1</span>,<span class="number">3</span>)).thenReturn(<span class="number">5</span>);</div><div class="line">    <span class="comment">//验证mock结果</span></div><div class="line">    <span class="keyword">int</span> resultMock= testUtil.add(<span class="number">1</span>,<span class="number">3</span>);</div><div class="line">    Assert.assertEquals(resultMock,<span class="number">4</span>);</div><div class="line">    <span class="comment">//验证mock是否调用</span></div><div class="line">    Mockito.verify(testUtil).add(<span class="number">1</span>,<span class="number">5</span>);</div><div class="line">    <span class="comment">//spy</span></div><div class="line">    TestUtil testUtil1Spy=Mockito.spy(TestUtil.class);</div><div class="line">    Mockito.when(testUtil1Spy.add(<span class="number">1</span>,<span class="number">3</span>)).thenReturn(<span class="number">5</span>);</div><div class="line">    <span class="keyword">int</span> resultMockSpy= testUtil.add(<span class="number">1</span>,<span class="number">3</span>);</div><div class="line">    Assert.assertEquals(resultMockSpy,<span class="number">4</span>);</div><div class="line"></div><div class="line">    Mockito.verify(testUtilMock,Mockito.times(<span class="number">2</span>)).add(Mockito.anyInt(),Mockito.anyInt());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>上面的代码是一些基本用法</p>
+<p>1.可以通过  <code>mock(Class&lt;T&gt; classToMock)</code>方法来生成一个对象，同时，可以使用<code>java   Mockito.when(testUtil.add(1,3)).thenReturn(5);</code> 来指定输入和输出。</p>
+<p>2.通过  <code>Mockito.verify(testUtil).add(1,5);</code> 可以判断一个方法是否运行，<code>verify</code>方法判断方案是否被调用是判断了参数的，但是在实际中，可能只是需要判断方法是否运行，而不需要参数的判定。Mockito提供了<code>Mockito.anyInt()</code>参数（any开头即为随意参数，包括null）,如<code>Mockito.verify(testUtilMock).add(Mockito.anyInt(),Mockito.anyInt());</code>同时下面的方法可以判定方法运行次数是否一致<code>verify(testUtilMock,Mockito.times(2))</code></p>
+<p>3.通过  <code>spy(Class&lt;T&gt; classToSpy)</code>来生成的对象，对其使用输入输入是无效的，他生成的是一个真正的对象，所以 <code>Assert.assertEquals(resultMockSpy,4);</code>是无法通过测试的；</p>
+<h3 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h3><p>Mockito也是提供了相应的注解的，但使用注解需要注册。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Before</span></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span></span>&#123;</div><div class="line">    MockitoAnnotations.initMocks(<span class="keyword">this</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="mock"><a href="#mock" class="headerlink" title="@mock"></a>@mock</h4><p>此注解与直接使用mock方法一致</p>
+<h4 id="spy"><a href="#spy" class="headerlink" title="@spy"></a>@spy</h4><p>此注解与直接使用spy方法一致</p>
+<h2 id="PowerMockito框架"><a href="#PowerMockito框架" class="headerlink" title="PowerMockito框架"></a>PowerMockito框架</h2><p>Mockito 框架是不支持静态类和静态方法的mock的。所以我们需要用到PowerMockito框架。<br>未完待续</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/14/android/autoUpdate7.0/" rel="next" title="7.0自动更新的问题(完整方案)">
+                <i class="fa fa-chevron-left"></i> 7.0自动更新的问题(完整方案)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/11/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
+               alt="Dennis huang" />
+          <p class="site-author-name" itemprop="name">Dennis huang</p>
+           
+              <p class="site-description motion-element" itemprop="description">just a blog</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iamdennisme" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/iamdennisme" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/Dennis.huang" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么我们要做单元测试"><span class="nav-number">1.</span> <span class="nav-text">为什么我们要做单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#减少bug"><span class="nav-number">1.1.</span> <span class="nav-text">减少bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高代码质量"><span class="nav-number">1.2.</span> <span class="nav-text">提高代码质量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#减少调试时间"><span class="nav-number">1.3.</span> <span class="nav-text">减少调试时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提高重构时的稳定性"><span class="nav-number">1.4.</span> <span class="nav-text">提高重构时的稳定性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#废话结束，开始看下怎么做呢"><span class="nav-number">2.</span> <span class="nav-text">废话结束，开始看下怎么做呢</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单元测试框架Junit"><span class="nav-number">2.1.</span> <span class="nav-text">单元测试框架Junit</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setup（主要准备环境运行）"><span class="nav-number">2.1.1.</span> <span class="nav-text">setup（主要准备环境运行）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Before注解"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">@Before注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#After注解"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">@After注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeforeClass注解"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">@BeforeClass注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AfterClass注解"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">@AfterClass注解</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行case"><span class="nav-number">2.1.2.</span> <span class="nav-text">执行case</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证结果"><span class="nav-number">2.1.3.</span> <span class="nav-text">验证结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mock框架Mockito"><span class="nav-number">2.2.</span> <span class="nav-text">mock框架Mockito</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本用法"><span class="nav-number">2.2.1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解"><span class="nav-number">2.2.2.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mock"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">@mock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#spy"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">@spy</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PowerMockito框架"><span class="nav-number">2.3.</span> <span class="nav-text">PowerMockito框架</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Dennis huang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
