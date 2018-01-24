@@ -366,7 +366,7 @@
 <p>大家肯定都用过，但是如果你写一个button，button的click就是这段代码，如果你连续点击20次button，我估计到你关掉应用，这个Toast还在不停的Toast。</p>
 <p>所以有了这个工具类。</p>
 <a id="more"></a>
-<p>#完整代码<br><a href="https://github.com/iamdennisme/ToastUtil/tree/master" target="_blank" rel="external">git:ToastUtil</a></p>
+<p>#完整代码<br><a href="https://github.com/iamdennisme/ToastUtil/tree/master" target="_blank" rel="noopener">git:ToastUtil</a></p>
 <p>#方法<br><em><code>show(Context context, String message, int showTime)</code></em></p>
 <p>这个方法其实是只做一件事，就是指定Toast的时间，指定后调用<code>show(Context context, String message)</code>，有点需要注意的是：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (showTime != Toast.LENGTH_SHORT &amp;&amp; showTime != Toast.LENGTH_LONG) &#123;</div><div class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"showTime must be Toast.LENGTH_SHORT or Toast.LENGTH_SHORT"</span>);</div><div class="line">       &#125;</div></pre></td></tr></table></figure>
