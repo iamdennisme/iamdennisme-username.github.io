@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,recyclerView," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,recyclerView,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2015/12/24/android/RecyclerView-ItemDecoration/"/>
+  <link rel="canonical" href="http://dennisce.com/2015/12/24/android/RecyclerView-ItemDecoration/">
 
 
 
@@ -181,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -211,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -221,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -231,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -270,7 +270,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -306,7 +306,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -370,13 +370,13 @@
 <li><code>onDrawOver(Canvas c, RecyclerView parent, State state)</code></li>
 <li><code>getItemOffsets(Rect outRect, View view, RecyclerView parent, State state)</code></li>
 </ul>
-<h2 id="onDraw"><a href="#onDraw" class="headerlink" title="onDraw"></a>onDraw</h2><p> 绘制分割线到canvas，绘制范围可以超出在 getItemOffsets 中设置的范围，但由于<em>onDraw</em>是在childView之前绘制，所以并不可见。<br>    google的官方示例中是这样实现的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawVertical</span><span class="params">(Canvas c, RecyclerView parent)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> left = parent.getPaddingLeft();</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> right = parent.getWidth() - parent.getPaddingRight();</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = parent.getChildCount();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</div><div class="line">        <span class="keyword">final</span> View child = parent.getChildAt(i);</div><div class="line">        <span class="keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child</div><div class="line">                .getLayoutParams();</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> top = child.getBottom() + params.bottomMargin +</div><div class="line">                Math.round(ViewCompat.getTranslationY(child));</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();</div><div class="line">        mDivider.setBounds(left, top, right, bottom);</div><div class="line">        mDivider.draw(c);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="onDraw"><a href="#onDraw" class="headerlink" title="onDraw"></a>onDraw</h2><p> 绘制分割线到canvas，绘制范围可以超出在 getItemOffsets 中设置的范围，但由于<em>onDraw</em>是在childView之前绘制，所以并不可见。<br>    google的官方示例中是这样实现的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawVertical</span><span class="params">(Canvas c, RecyclerView parent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> left = parent.getPaddingLeft();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> right = parent.getWidth() - parent.getPaddingRight();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = parent.getChildCount();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">        <span class="keyword">final</span> View child = parent.getChildAt(i);</span><br><span class="line">        <span class="keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child</span><br><span class="line">                .getLayoutParams();</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> top = child.getBottom() + params.bottomMargin +</span><br><span class="line">                Math.round(ViewCompat.getTranslationY(child));</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> bottom = top + mDivider.getIntrinsicHeight();</span><br><span class="line">        mDivider.setBounds(left, top, right, bottom);</span><br><span class="line">        mDivider.draw(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这是一个竖向的view，其中的<em>setBounds</em>是用来限制divider范围的。主要四个属性。</p>
 <p>其中，left 设置为 parent.getPaddingLeft()，也就是左边是RecyclerView 的左边界加上 paddingLeft 之后的位置（其实就是paddingLeft），right 则设置为了 RecyclerView 的右边界减去 paddingRight 之后的位置，top 设置为了 child 的 bottom 加上 marginBottom 再加上 translationY，这其实就是 child view 的下边界，bottom 则是top 加上 divider。</p>
-<h2 id="getItemOffsets"><a href="#getItemOffsets" class="headerlink" title="getItemOffsets"></a>getItemOffsets</h2><p> 用来限定绘制范围。google的官方示例中是这样实现的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (mOrientation == VERTICAL_LIST) &#123;</div><div class="line">   outRect.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, mDivider.getIntrinsicHeight());</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">   outRect.set(<span class="number">0</span>, <span class="number">0</span>, mDivider.getIntrinsicWidth(), <span class="number">0</span>);</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="getItemOffsets"><a href="#getItemOffsets" class="headerlink" title="getItemOffsets"></a>getItemOffsets</h2><p> 用来限定绘制范围。google的官方示例中是这样实现的。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (mOrientation == VERTICAL_LIST) &#123;</span><br><span class="line">   outRect.set(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, mDivider.getIntrinsicHeight());</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   outRect.set(<span class="number">0</span>, <span class="number">0</span>, mDivider.getIntrinsicWidth(), <span class="number">0</span>);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
 <p>根据view方向进行了简单的限定</p>
 <h2 id="onDrawOver"><a href="#onDrawOver" class="headerlink" title="onDrawOver"></a>onDrawOver</h2><p>和<em>onDraw</em>不同的是onDrawOver是在childView绘制后进行，所以onDrawOver 是绘制在最上层的，所以可以使用 onDrawOver做一些特别的事，例如为 View 绘制一个蒙层。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawOver</span><span class="params">(Canvas c, RecyclerView parent)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> left = parent.getPaddingLeft();</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> right =parent.getWidth()-parent.getPaddingRight();</div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = parent.getChildCount();</div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</div><div class="line">        <span class="keyword">final</span> View child = parent.getChildAt(i);</div><div class="line">        <span class="keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child</div><div class="line">                .getLayoutParams();</div><div class="line"></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> top = child.getTop()+params.topMargin+<span class="number">20</span>;</div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> bottom = top + <span class="number">40</span>;</div><div class="line">        mDivider.setColorFilter(Color.BLUE, PorterDuff.Mode.OVERLAY);</div><div class="line">        mDivider.setBounds(left, top, right, bottom);</div><div class="line">        mDivider.draw(c);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawOver</span><span class="params">(Canvas c, RecyclerView parent)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> left = parent.getPaddingLeft();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> right =parent.getWidth()-parent.getPaddingRight();</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> childCount = parent.getChildCount();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">        <span class="keyword">final</span> View child = parent.getChildAt(i);</span><br><span class="line">        <span class="keyword">final</span> RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child</span><br><span class="line">                .getLayoutParams();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> top = child.getTop()+params.topMargin+<span class="number">20</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> bottom = top + <span class="number">40</span>;</span><br><span class="line">        mDivider.setColorFilter(Color.BLUE, PorterDuff.Mode.OVERLAY);</span><br><span class="line">        mDivider.setBounds(left, top, right, bottom);</span><br><span class="line">        mDivider.draw(c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://o8zwyxgy9.bkt.clouddn.com/Decoration.png" alt="demo"></p>
 
       
@@ -463,7 +463,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -505,7 +505,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -516,9 +516,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -529,7 +527,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -551,7 +549,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -635,10 +633,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

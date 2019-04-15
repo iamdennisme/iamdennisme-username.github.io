@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,开发过程中的问题," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,开发过程中的问题,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -129,7 +129,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2016/07/23/android/ListView_addHeaderView/"/>
+  <link rel="canonical" href="http://dennisce.com/2016/07/23/android/ListView_addHeaderView/">
 
 
 
@@ -179,7 +179,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -209,7 +209,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -219,7 +219,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -229,7 +229,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -268,7 +268,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -304,7 +304,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -363,10 +363,10 @@
       
         <p>问题来由，今天查看bugly，发现线上有一个bug。<br><strong>java.lang.IllegalStateException: Cannot add header view to list – setAdapter has already been called.</strong></p>
 <p>发现这个问题在android 4.4以下的机器中必然出现。查看了4.4以下ListView的源码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeaderView</span><span class="params">(View v, Object data, <span class="keyword">boolean</span> isSelectable)</span> </span>&#123;  </div><div class="line">    <span class="keyword">if</span> (mAdapter != <span class="keyword">null</span> &amp;&amp; ! (mAdapter <span class="keyword">instanceof</span> HeaderViewListAdapter)) &#123;  </div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(  </div><div class="line">                <span class="string">"Cannot add header view to list -- setAdapter has already been called."</span>);  </div><div class="line">    &#125;  </div><div class="line">    ......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addHeaderView</span><span class="params">(View v, Object data, <span class="keyword">boolean</span> isSelectable)</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (mAdapter != <span class="keyword">null</span> &amp;&amp; ! (mAdapter <span class="keyword">instanceof</span> HeaderViewListAdapter)) &#123;  </span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalStateException(  </span><br><span class="line">                <span class="string">"Cannot add header view to list -- setAdapter has already been called."</span>);  </span><br><span class="line">    &#125;  </span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以看到此方法判断了adapter是否为空，如果不为空，则直接抛异常。</p>
 <p>在4.4以后的版本中。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (mAdapter != <span class="keyword">null</span>) &#123;</div><div class="line">      <span class="keyword">if</span> (!(mAdapter <span class="keyword">instanceof</span> HeaderViewListAdapter)) &#123;</div><div class="line">          wrapHeaderListAdapterInternal();</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="comment">// In the case of re-adding a header view, or adding one later on,</span></div><div class="line">      <span class="comment">// we need to notify the observer.</span></div><div class="line">      <span class="keyword">if</span> (mDataSetObserver != <span class="keyword">null</span>) &#123;</div><div class="line">          mDataSetObserver.onChanged();</div><div class="line">      &#125;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (mAdapter != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (!(mAdapter <span class="keyword">instanceof</span> HeaderViewListAdapter)) &#123;</span><br><span class="line">          wrapHeaderListAdapterInternal();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// In the case of re-adding a header view, or adding one later on,</span></span><br><span class="line">      <span class="comment">// we need to notify the observer.</span></span><br><span class="line">      <span class="keyword">if</span> (mDataSetObserver != <span class="keyword">null</span>) &#123;</span><br><span class="line">          mDataSetObserver.onChanged();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>google已经修复了这个问题。</p>
 <p><strong>结论</strong></p>
 <p>在支持版本有4.4以下时，addHeaderView要在setAdapter前使用</p>
@@ -456,7 +456,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -500,9 +500,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -513,7 +511,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -535,7 +533,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -603,10 +601,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

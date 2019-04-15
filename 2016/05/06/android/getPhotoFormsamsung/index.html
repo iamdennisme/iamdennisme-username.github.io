@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="厂商的坑," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="厂商的坑,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -132,7 +132,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2016/05/06/android/getPhotoFormsamsung/"/>
+  <link rel="canonical" href="http://dennisce.com/2016/05/06/android/getPhotoFormsamsung/">
 
 
 
@@ -182,7 +182,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -212,7 +212,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -222,7 +222,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -232,7 +232,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -271,7 +271,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -307,7 +307,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -365,19 +365,19 @@
 
       
         <h1 id="问题所在"><a href="#问题所在" class="headerlink" title="问题所在"></a>问题所在</h1><p> 最近做了一个需求，从手机相册中获取图片并进行显示，做完测试都没有问题，后来突然发现三星的手机取出的图片是左转了90度的。wtf~~。</p>
-<p>下面这个是不正常的(状态栏请无视，随便拿了个公司的测试机)<br><img src="http://o8zwyxgy9.bkt.clouddn.com/sanxing23.png" alt=""></p>
-<p>正常应该是这样的<br><img src="http://o8zwyxgy9.bkt.clouddn.com/sanxing2.png" alt=""></p>
+<p>下面这个是不正常的(状态栏请无视，随便拿了个公司的测试机)<br><img src="http://o8zwyxgy9.bkt.clouddn.com/sanxing23.png" alt></p>
+<p>正常应该是这样的<br><img src="http://o8zwyxgy9.bkt.clouddn.com/sanxing2.png" alt></p>
 <h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>我们需要用到一个叫做 ExifInterface的类，google官方对其的描述是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">This is a class for reading and writing Exif tags in a JPEG file or a RAW image file.</div><div class="line"></div><div class="line">Supported formats are: JPEG, DNG, CR2, NEF, NRW, ARW, RW2, ORF and RAF.</div><div class="line"></div><div class="line">Attribute mutation is supported for JPEG image files.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">This is a class for reading and writing Exif tags in a JPEG file or a RAW image file.</span><br><span class="line"></span><br><span class="line">Supported formats are: JPEG, DNG, CR2, NEF, NRW, ARW, RW2, ORF and RAF.</span><br><span class="line"></span><br><span class="line">Attribute mutation is supported for JPEG image files.</span><br></pre></td></tr></table></figure>
 <p>根据描述这是一个用来操作图片exiftag信息的类</p>
 <h2 id="解决的具体办法"><a href="#解决的具体办法" class="headerlink" title="解决的具体办法"></a>解决的具体办法</h2><h3 id="不是所有的图片都需要处理，先检查"><a href="#不是所有的图片都需要处理，先检查" class="headerlink" title="不是所有的图片都需要处理，先检查"></a>不是所有的图片都需要处理，先检查</h3><p>  <em>talk is cheap,show you my code</em></p>
-   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">readPictureDegree</span><span class="params">(String path)</span> </span>&#123;</div><div class="line">    <span class="keyword">int</span> degree = <span class="number">0</span>;</div><div class="line">    <span class="keyword">try</span> &#123;</div><div class="line">        ExifInterface exifInterface = <span class="keyword">new</span> ExifInterface(path);</div><div class="line">        <span class="keyword">int</span> orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);</div><div class="line">        <span class="keyword">switch</span> (orientation) &#123;</div><div class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_90:</div><div class="line">                degree = <span class="number">90</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_180:</div><div class="line">                degree = <span class="number">180</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_270:</div><div class="line">                degree = <span class="number">270</span>;</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> degree;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">readPictureDegree</span><span class="params">(String path)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> degree = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ExifInterface exifInterface = <span class="keyword">new</span> ExifInterface(path);</span><br><span class="line">        <span class="keyword">int</span> orientation = exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);</span><br><span class="line">        <span class="keyword">switch</span> (orientation) &#123;</span><br><span class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_90:</span><br><span class="line">                degree = <span class="number">90</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_180:</span><br><span class="line">                degree = <span class="number">180</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> ExifInterface.ORIENTATION_ROTATE_270:</span><br><span class="line">                degree = <span class="number">270</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> degree;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  这是一个检查图片的旋转度数的方法（三星我遇到的都是90），所以，如果你收到返回为90.那就应该要进行处理。</p>
 <h3 id="既然你知道有问题了，是不是要处理呢？"><a href="#既然你知道有问题了，是不是要处理呢？" class="headerlink" title="既然你知道有问题了，是不是要处理呢？"></a>既然你知道有问题了，是不是要处理呢？</h3><p>   <em>talk is cheap,show you my code</em></p>
- <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">rotateBitmapByDegree</span><span class="params">(Bitmap bm, <span class="keyword">int</span> degree)</span> </span>&#123;</div><div class="line">       Bitmap returnBm = <span class="keyword">null</span>;</div><div class="line">       <span class="comment">// 根据旋转角度，生成旋转矩阵</span></div><div class="line">       Matrix matrix = <span class="keyword">new</span> Matrix();</div><div class="line">       matrix.postRotate(degree);</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           <span class="comment">// 将原始图片按照旋转矩阵进行旋转，并得到新的图片</span></div><div class="line">           returnBm = Bitmap.createBitmap(bm, <span class="number">0</span>, <span class="number">0</span>, bm.getWidth(),</div><div class="line">                   bm.getHeight(), matrix, <span class="keyword">true</span>);</div><div class="line">       &#125; <span class="keyword">catch</span> (OutOfMemoryError e) &#123;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> (returnBm == <span class="keyword">null</span>) &#123;</div><div class="line">           returnBm = bm;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">if</span> (bm != returnBm) &#123;</div><div class="line">           bm.recycle();</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> returnBm;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Bitmap <span class="title">rotateBitmapByDegree</span><span class="params">(Bitmap bm, <span class="keyword">int</span> degree)</span> </span>&#123;</span><br><span class="line">       Bitmap returnBm = <span class="keyword">null</span>;</span><br><span class="line">       <span class="comment">// 根据旋转角度，生成旋转矩阵</span></span><br><span class="line">       Matrix matrix = <span class="keyword">new</span> Matrix();</span><br><span class="line">       matrix.postRotate(degree);</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="comment">// 将原始图片按照旋转矩阵进行旋转，并得到新的图片</span></span><br><span class="line">           returnBm = Bitmap.createBitmap(bm, <span class="number">0</span>, <span class="number">0</span>, bm.getWidth(),</span><br><span class="line">                   bm.getHeight(), matrix, <span class="keyword">true</span>);</span><br><span class="line">       &#125; <span class="keyword">catch</span> (OutOfMemoryError e) &#123;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (returnBm == <span class="keyword">null</span>) &#123;</span><br><span class="line">           returnBm = bm;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (bm != returnBm) &#123;</span><br><span class="line">           bm.recycle();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> returnBm;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p> 你需要把path转为bitmap，然后此方法是根据你传入的角度，进行旋转（检测获取到是多少，就传入多少就行）。</p>
 <p> 再提供一个path转bitmap的方法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getBitmapCompress720P</span><span class="params">(String pathName)</span> </span>&#123;</div><div class="line">       <span class="keyword">int</span> targetWidth = <span class="number">720</span>;</div><div class="line">       <span class="keyword">int</span> targetHeight = <span class="number">1080</span>;</div><div class="line">       BitmapFactory.Options options = <span class="keyword">new</span> BitmapFactory.Options();</div><div class="line">       options.inJustDecodeBounds = <span class="keyword">true</span>;</div><div class="line">       Bitmap bitmap;</div><div class="line">       </div><div class="line">       <span class="keyword">float</span> imgWidth = options.outWidth;</div><div class="line">       <span class="keyword">float</span> imgHeight = options.outHeight;</div><div class="line">       </div><div class="line">       <span class="keyword">int</span> widthRatio = (<span class="keyword">int</span>) Math.ceil(imgWidth / (<span class="keyword">float</span>) targetWidth);</div><div class="line">       <span class="keyword">int</span> heightRatio = (<span class="keyword">int</span>) Math.ceil(imgHeight / (<span class="keyword">float</span>) targetHeight);</div><div class="line">       options.inSampleSize = <span class="number">1</span>;</div><div class="line">       </div><div class="line">       <span class="keyword">if</span> (widthRatio &gt; <span class="number">1</span> || widthRatio &gt; <span class="number">1</span>) &#123;</div><div class="line">           <span class="keyword">if</span> (widthRatio &gt; heightRatio) &#123;</div><div class="line">               options.inSampleSize = widthRatio;</div><div class="line">           &#125; <span class="keyword">else</span> &#123;</div><div class="line">               options.inSampleSize = heightRatio;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       </div><div class="line">       options.inJustDecodeBounds = <span class="keyword">false</span>;</div><div class="line">       bitmap = BitmapFactory.decodeFile(pathName, options);</div><div class="line">       <span class="keyword">return</span> bitmap;</div><div class="line">      &#125;</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap <span class="title">getBitmapCompress720P</span><span class="params">(String pathName)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> targetWidth = <span class="number">720</span>;</span><br><span class="line">       <span class="keyword">int</span> targetHeight = <span class="number">1080</span>;</span><br><span class="line">       BitmapFactory.Options options = <span class="keyword">new</span> BitmapFactory.Options();</span><br><span class="line">       options.inJustDecodeBounds = <span class="keyword">true</span>;</span><br><span class="line">       Bitmap bitmap;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">float</span> imgWidth = options.outWidth;</span><br><span class="line">       <span class="keyword">float</span> imgHeight = options.outHeight;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">int</span> widthRatio = (<span class="keyword">int</span>) Math.ceil(imgWidth / (<span class="keyword">float</span>) targetWidth);</span><br><span class="line">       <span class="keyword">int</span> heightRatio = (<span class="keyword">int</span>) Math.ceil(imgHeight / (<span class="keyword">float</span>) targetHeight);</span><br><span class="line">       options.inSampleSize = <span class="number">1</span>;</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">if</span> (widthRatio &gt; <span class="number">1</span> || widthRatio &gt; <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (widthRatio &gt; heightRatio) &#123;</span><br><span class="line">               options.inSampleSize = widthRatio;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               options.inSampleSize = heightRatio;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       options.inJustDecodeBounds = <span class="keyword">false</span>;</span><br><span class="line">       bitmap = BitmapFactory.decodeFile(pathName, options);</span><br><span class="line">       <span class="keyword">return</span> bitmap;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
 <p>这个方法是path转bitmap。对图片进行了缩放，因为bitmap在set imageview的时候，其实你取出来的会很大，多半会失败，反正要压缩，不如这里压缩，上面方法是设置的720P的压缩，你可以直接改，也可以进行扩展。</p>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>   一般来说，需要从相册取图片的需求都伴随着上传，如果你不能直接bitmap上传，那可能还需要转回到path存到本地，这里是一个比较耗时的过程，建议使用异步，并且，在上传时去做转存。</p>
 
@@ -463,7 +463,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -505,7 +505,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -516,9 +516,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -529,7 +527,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -551,7 +549,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -635,10 +633,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

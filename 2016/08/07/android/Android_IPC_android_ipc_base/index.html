@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2016/08/07/android/Android_IPC_android_ipc_base/"/>
+  <link rel="canonical" href="http://dennisce.com/2016/08/07/android/Android_IPC_android_ipc_base/">
 
 
 
@@ -184,7 +184,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -214,7 +214,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -224,7 +224,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -234,7 +234,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -273,7 +273,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -309,7 +309,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -380,14 +380,14 @@
         <p>Android的IPC机制menu:<a href="http://www.dennisce.com/2016/06/14/android/android_IPC_meun/" target="_blank" rel="noopener">链接</a></p>
 <h1 id="进程？线程？"><a href="#进程？线程？" class="headerlink" title="进程？线程？"></a>进程？线程？</h1><p>进程不同于线程，一个进程可以用多个线程，比如一个包名为com.dennisce.ipcdemo的app，他的默认进程即为com.dennisce.ipcdemo,主线程为UI线程，但是同时你可以在这个进程中新建一个叫notUI线程的，所以线程并不是进程（其实感觉大多数时间都是单进程的，android对每个进程的内存使用是有限制的，早期版本可能很低，使用多进程来获取更大的空间）</p>
 <h1 id="android中使用新进程"><a href="#android中使用新进程" class="headerlink" title="android中使用新进程"></a>android中使用新进程</h1><p>开启一个新的进程，开启是很简单，直接在androidmanifest给组件指定<em>android:process</em>属性就可以了。但事实上没有想象的那么美好。（通过JNI可以在native层fork一个新进程，之前有个fork子进程，主进程退出，子进程继续的漏洞，估计大家都听说过）</p>
-<h1 id="新进程的具体使用"><a href="#新进程的具体使用" class="headerlink" title="新进程的具体使用"></a>新进程的具体使用</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">application</span></span></div><div class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></div><div class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line"></div><div class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line"></div><div class="line">        <span class="tag">&lt;<span class="name">activity</span> </span></div><div class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".SecondActivity"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:process</span>=<span class="string">":second"</span>/&gt;</span></div><div class="line">            </div><div class="line">         <span class="tag">&lt;<span class="name">activity</span></span></div><div class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".ThirdActivity"</span></span></div><div class="line"><span class="tag">            <span class="attr">android:process</span>=<span class="string">"com.dennisce.third"</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div></pre></td></tr></table></figure>
+<h1 id="新进程的具体使用"><a href="#新进程的具体使用" class="headerlink" title="新进程的具体使用"></a>新进程的具体使用</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">"@style/AppTheme"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">".MainActivity"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span> </span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".SecondActivity"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:process</span>=<span class="string">":second"</span>/&gt;</span></span><br><span class="line">            </span><br><span class="line">         <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">".ThirdActivity"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:process</span>=<span class="string">"com.dennisce.third"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>上面是两个activity，一个是默认主进程，未指定线程，一个是使用了<em>android:process=”:second”</em>，是什么意思呢？<em>:</em> 这个符号表示的是 当前的包名+”：“+”：后面的命名“，所以这里的新进程名就是com.dennisce.ipcdemo:second，当然你也可以直接指定完整的命名，比如<em>android:process=”com.dennisce.third”</em>,这两者有什么不同吗？</p>
 <h2 id="使用：命名和直接命名的区别"><a href="#使用：命名和直接命名的区别" class="headerlink" title="使用：命名和直接命名的区别"></a>使用：命名和直接命名的区别</h2><p>当使用:命名的变量，表示是当前应用的私有进程，其他应用的组件不可以与他处在一个进程中，而直接命名的进程属于全局进程，可以通过shareUID实现跑在一个进程中，系统会为每一个应用分配一个shareUID，当shareUID相同的应用才可以共享数据，他们可以共享私有数据，包括data目录，组件信息，不管他们是否在一个进程里面，当然，，如果他们在一个进程里面的话，他们还可以共享内存数据。</p>
 <h2 id="实践一下"><a href="#实践一下" class="headerlink" title="实践一下"></a>实践一下</h2><p>1.xml配置和上面一样<br>2.分别在activityonCreate中添加以下代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Toast.makeText(<span class="keyword">this</span>,Util.getCurProcessName(<span class="keyword">this</span>),Toast.LENGTH_SHORT).show();</div><div class="line">Log.d(<span class="string">"process-log"</span>, <span class="string">"main"</span> + Util.getCurProcessName(<span class="keyword">this</span>));</div></pre></td></tr></table></figure>
-<p>我们来看下activity的启动效果呢？<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc0.gif" alt=""></p>
-<p>TOAST出来的是当前activity的进程，可以看到3个activity在三个不同的进程，同时，在AS可以看到<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc-1.png" alt=""><br>现在确实是有三个进程，也可以看到我们用“<strong>：</strong>”来创建的进程，确实自动生成了包名+：后的内容。</p>
-<h1 id="多进程可能存在的问题"><a href="#多进程可能存在的问题" class="headerlink" title="多进程可能存在的问题"></a>多进程可能存在的问题</h1><h2 id="具体操作一个"><a href="#具体操作一个" class="headerlink" title="具体操作一个"></a>具体操作一个</h2><p>之前说到多进程并不是那么的美好，先来看一个问题<br>我在外部创建了一个叫Util的类，并且定义了一个叫做tag的静态变量。<br>我们分别在3个activity onCreate中改变此变量的值<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc2.png" alt=""><br>我们运行后看下结果<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc3.png" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Toast.makeText(<span class="keyword">this</span>,Util.getCurProcessName(<span class="keyword">this</span>),Toast.LENGTH_SHORT).show();</span><br><span class="line">Log.d(<span class="string">"process-log"</span>, <span class="string">"main"</span> + Util.getCurProcessName(<span class="keyword">this</span>));</span><br></pre></td></tr></table></figure>
+<p>我们来看下activity的启动效果呢？<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc0.gif" alt></p>
+<p>TOAST出来的是当前activity的进程，可以看到3个activity在三个不同的进程，同时，在AS可以看到<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc-1.png" alt><br>现在确实是有三个进程，也可以看到我们用“<strong>：</strong>”来创建的进程，确实自动生成了包名+：后的内容。</p>
+<h1 id="多进程可能存在的问题"><a href="#多进程可能存在的问题" class="headerlink" title="多进程可能存在的问题"></a>多进程可能存在的问题</h1><h2 id="具体操作一个"><a href="#具体操作一个" class="headerlink" title="具体操作一个"></a>具体操作一个</h2><p>之前说到多进程并不是那么的美好，先来看一个问题<br>我在外部创建了一个叫Util的类，并且定义了一个叫做tag的静态变量。<br>我们分别在3个activity onCreate中改变此变量的值<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc2.png" alt><br>我们运行后看下结果<br><img src="http://o8zwyxgy9.bkt.clouddn.com/ipc3.png" alt></p>
 <p>可以看到，我们在1th进程修改的变量，在2th竟然木有变？在3也没有变。<br>这是因为3个acitivty运行在三个不用的进程，android为每个进程都分配了独立的虚拟机，有不同的内存地址，于是你访问同一个类的对象会产生多个副本，所以其实Util在每个进程中都有一个独立的类，互不影响，所以修改不会影响其他进程的activity的值。</p>
 <h2 id="大概会有那些呢"><a href="#大概会有那些呢" class="headerlink" title="大概会有那些呢"></a>大概会有那些呢</h2><h3 id="静态成员和单例模式失效"><a href="#静态成员和单例模式失效" class="headerlink" title="静态成员和单例模式失效"></a>静态成员和单例模式失效</h3><p>   这个问题的原因就是上面的例子，因为内存地址都不同了</p>
 <h3 id="线程同步机制失败"><a href="#线程同步机制失败" class="headerlink" title="线程同步机制失败"></a>线程同步机制失败</h3><p>   因为不是一块内存呢，无论锁对象还是锁全局类都没有意义的，都无法保证线程同步，</p>
@@ -477,7 +477,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -519,7 +519,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -530,9 +530,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -543,7 +541,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -565,7 +563,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -649,10 +647,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

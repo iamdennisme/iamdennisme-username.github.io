@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,handler," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,handler,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -131,7 +131,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2016/06/17/android/handler1/"/>
+  <link rel="canonical" href="http://dennisce.com/2016/06/17/android/handler1/">
 
 
 
@@ -181,7 +181,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -211,7 +211,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -221,7 +221,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -231,7 +231,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -270,7 +270,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -306,7 +306,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -365,19 +365,19 @@
       
         <h1 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h1><p>Handler可以帮助你发送一个Message或者Runable对象到一个线程的MessageQueue中。</p>
 <h2 id="Handler的简单使用"><a href="#Handler的简单使用" class="headerlink" title="Handler的简单使用"></a>Handler的简单使用</h2><p>先看看简单的使用</p>
-<h3 id="Handler-post（new-Runable）"><a href="#Handler-post（new-Runable）" class="headerlink" title="Handler.post（new Runable）"></a>Handler.post（new Runable）</h3><p>比如我用在一个其他线程中做一些延时的操作，然后在UI线程更新UI，我可能会这样写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                   <span class="meta">@Override</span></div><div class="line">                   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                       <span class="keyword">try</span> &#123;</div><div class="line">                           <span class="keyword">new</span> Thread().sleep(<span class="number">5000</span>);</div><div class="line">                           btnSleep.post(<span class="keyword">new</span> Runnable() &#123;</div><div class="line">                               <span class="meta">@Override</span></div><div class="line">                               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">                                   btnSleep.setText(<span class="string">"sleeped"</span>);</div><div class="line">                               &#125;</div><div class="line">                           &#125;);</div><div class="line">                       &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">                           e.printStackTrace();</div><div class="line">                       &#125;</div><div class="line">                   &#125;</div><div class="line">               &#125;).start();</div></pre></td></tr></table></figure></p>
+<h3 id="Handler-post（new-Runable）"><a href="#Handler-post（new-Runable）" class="headerlink" title="Handler.post（new Runable）"></a>Handler.post（new Runable）</h3><p>比如我用在一个其他线程中做一些延时的操作，然后在UI线程更新UI，我可能会这样写<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                   <span class="meta">@Override</span></span><br><span class="line">                   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                       <span class="keyword">try</span> &#123;</span><br><span class="line">                           <span class="keyword">new</span> Thread().sleep(<span class="number">5000</span>);</span><br><span class="line">                           btnSleep.post(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                               <span class="meta">@Override</span></span><br><span class="line">                               <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                                   btnSleep.setText(<span class="string">"sleeped"</span>);</span><br><span class="line">                               &#125;</span><br><span class="line">                           &#125;);</span><br><span class="line">                       &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                           e.printStackTrace();</span><br><span class="line">                       &#125;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;).start();</span><br></pre></td></tr></table></figure></p>
 <p>上面的btnSleep是一个button，我new了一个线程，先使线程sleep了5000毫秒（表示耗时操作），这个耗时操作如果在UI线程中操作，会导致ANR，所以在new 线程中做操作，但是操作完成后，我需要更新UI线程怎么办，这个时候，可以看到，我使用了btnSleep.post，这样就使runable在UI线程执行了，这就是handler的一个作用。</p>
-<h3 id="Handler-post和view-post"><a href="#Handler-post和view-post" class="headerlink" title="Handler.post和view.post"></a>Handler.post和view.post</h3><p>但是大家可能很疑惑，说好的handler.post，但是这里却是view.post。我们来看下view.post这个方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable action)</span> </span>&#123;</div><div class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</div><div class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">return</span> attachInfo.mHandler.post(action);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Postpone the runnable until we know on which thread it needs to run.</span></div><div class="line">    <span class="comment">// Assume that the runnable will be successfully placed after attach.</span></div><div class="line">    getRunQueue().post(action);</div><div class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>可以看到如果attachInfo存在，首先从当前view绑定的线程中获取handler。这样的话和直接在主线程new handler是无异的（<strong>handler所绑定的线程应该是他创建的时候的线程</strong>）。<br><strong>下面一定要注意</strong><br>但是如果你的View没有Detach呢？<br>那么attachInfo为null，会执行<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getRunQueue().post(action);</div></pre></td></tr></table></figure></p>
-<p>我们深入看下代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> HandlerActionQueue <span class="title">getRunQueue</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (mRunQueue == <span class="keyword">null</span>) &#123;</div><div class="line">        mRunQueue = <span class="keyword">new</span> HandlerActionQueue();</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> mRunQueue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="Handler-post和view-post"><a href="#Handler-post和view-post" class="headerlink" title="Handler.post和view.post"></a>Handler.post和view.post</h3><p>但是大家可能很疑惑，说好的handler.post，但是这里却是view.post。我们来看下view.post这个方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">post</span><span class="params">(Runnable action)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> AttachInfo attachInfo = mAttachInfo;</span><br><span class="line">    <span class="keyword">if</span> (attachInfo != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> attachInfo.mHandler.post(action);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Postpone the runnable until we know on which thread it needs to run.</span></span><br><span class="line">    <span class="comment">// Assume that the runnable will be successfully placed after attach.</span></span><br><span class="line">    getRunQueue().post(action);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到如果attachInfo存在，首先从当前view绑定的线程中获取handler。这样的话和直接在主线程new handler是无异的（<strong>handler所绑定的线程应该是他创建的时候的线程</strong>）。<br><strong>下面一定要注意</strong><br>但是如果你的View没有Detach呢？<br>那么attachInfo为null，会执行<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getRunQueue().post(action);</span><br></pre></td></tr></table></figure></p>
+<p>我们深入看下代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> HandlerActionQueue <span class="title">getRunQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mRunQueue == <span class="keyword">null</span>) &#123;</span><br><span class="line">        mRunQueue = <span class="keyword">new</span> HandlerActionQueue();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> mRunQueue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到了吧，mRunQueue是一个全新的mRunQueue。post出去的线程和UI线程并不是一个线程。这样就不能这样直接使用view.post</p>
 <h3 id="Handler-post（Message）"><a href="#Handler-post（Message）" class="headerlink" title="Handler.post（Message）"></a>Handler.post（Message）</h3><h4 id="先介绍一发Message"><a href="#先介绍一发Message" class="headerlink" title="先介绍一发Message"></a>先介绍一发Message</h4><p>首先，message是用来封装消息的。<br>先看下主要的字段<br><img src="http://o8zwyxgy9.bkt.clouddn.com/Message_Class.png" alt="message"><br>1.arg1 and arg2 :这两个字段是用来传递一些简单的int类型的数据，比如下载进这些<br>2.obj:兼容所有类型，传递所有数据都可以用这个<br>3.replyto:表示message可以回复的messenger（个人理解），为可选参数<br>4.sendingUid:跨进程通讯时使用，指定传输的位置<br>5.what:定义的int类型让接受者识别消息种类</p>
 <h4 id="实际demo"><a href="#实际demo" class="headerlink" title="实际demo"></a>实际demo</h4><p>当我们需要去下载一张图片并且显示在一个ImageView中，首先，我们不能在主线程进行网络操作的（4.0以后直接在UI线程进行http请求的话会直接抛出NetworkOnMainThreadException异常），所以我们要在一个单独的线程中执行网络请求，再在UI线程更新图片。</p>
-<p>直接上代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadImageTheard</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</div><div class="line">       <span class="keyword">private</span> String imgUrl;</div><div class="line"></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="title">LoadImageTheard</span><span class="params">(String imgUrl)</span> </span>&#123;</div><div class="line">           <span class="keyword">this</span>.imgUrl = imgUrl;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="meta">@Override</span></div><div class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</div><div class="line">           <span class="keyword">if</span> (imgUrl == <span class="keyword">null</span>) &#123;</div><div class="line">               <span class="keyword">return</span>;</div><div class="line">           &#125;</div><div class="line">           HttpClient httpClient = <span class="keyword">new</span> DefaultHttpClient();</div><div class="line">           HttpGet httpGet = <span class="keyword">new</span> HttpGet(imgUrl);</div><div class="line">           HttpResponse httpResponse = <span class="keyword">null</span>;</div><div class="line">           <span class="keyword">try</span> &#123;</div><div class="line">               httpResponse = httpClient.execute(httpGet);</div><div class="line">               <span class="keyword">if</span> (httpResponse.getStatusLine().getStatusCode() == <span class="number">200</span>) &#123;</div><div class="line">                   <span class="keyword">byte</span>[] data = EntityUtils.toByteArray(httpResponse.getEntity());</div><div class="line">                   Bitmap bm = BitmapFactory.decodeByteArray(data, <span class="number">0</span>, data.length);</div><div class="line">                   Message message = Message.obtain();</div><div class="line">                   message.obj = bm;</div><div class="line">                   message.what = WHAT;</div><div class="line">                   handler.sendMessage(message);</div><div class="line"></div><div class="line">               &#125;</div><div class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">               e.printStackTrace();</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
-<p>可以看到在网络请求结束后，我们获得了一个message，并对obj、what进行了赋值，obj是需要传输出去的数据，what是标识，然后调用handler.sendMessage 讲消息发送出去，那这个handler是怎么创建的呢？<br>是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.handleMessage(msg);</div><div class="line">        <span class="keyword">switch</span> (msg.what) &#123;</div><div class="line">            <span class="keyword">case</span> WHAT: &#123;</div><div class="line">                Bitmap bm = (Bitmap) msg.obj;</div><div class="line">                <span class="keyword">if</span> (bm == <span class="keyword">null</span>) &#123;</div><div class="line">                    <span class="keyword">return</span>;</div><div class="line">                &#125;</div><div class="line">                ivCover.setImageBitmap(bm);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>直接上代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoadImageTheard</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">       <span class="keyword">private</span> String imgUrl;</span><br><span class="line"></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="title">LoadImageTheard</span><span class="params">(String imgUrl)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">this</span>.imgUrl = imgUrl;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span> (imgUrl == <span class="keyword">null</span>) &#123;</span><br><span class="line">               <span class="keyword">return</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           HttpClient httpClient = <span class="keyword">new</span> DefaultHttpClient();</span><br><span class="line">           HttpGet httpGet = <span class="keyword">new</span> HttpGet(imgUrl);</span><br><span class="line">           HttpResponse httpResponse = <span class="keyword">null</span>;</span><br><span class="line">           <span class="keyword">try</span> &#123;</span><br><span class="line">               httpResponse = httpClient.execute(httpGet);</span><br><span class="line">               <span class="keyword">if</span> (httpResponse.getStatusLine().getStatusCode() == <span class="number">200</span>) &#123;</span><br><span class="line">                   <span class="keyword">byte</span>[] data = EntityUtils.toByteArray(httpResponse.getEntity());</span><br><span class="line">                   Bitmap bm = BitmapFactory.decodeByteArray(data, <span class="number">0</span>, data.length);</span><br><span class="line">                   Message message = Message.obtain();</span><br><span class="line">                   message.obj = bm;</span><br><span class="line">                   message.what = WHAT;</span><br><span class="line">                   handler.sendMessage(message);</span><br><span class="line"></span><br><span class="line">               &#125;</span><br><span class="line">           &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">               e.printStackTrace();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到在网络请求结束后，我们获得了一个message，并对obj、what进行了赋值，obj是需要传输出去的数据，what是标识，然后调用handler.sendMessage 讲消息发送出去，那这个handler是怎么创建的呢？<br>是这样的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Handler handler = <span class="keyword">new</span> Handler() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(Message msg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.handleMessage(msg);</span><br><span class="line">        <span class="keyword">switch</span> (msg.what) &#123;</span><br><span class="line">            <span class="keyword">case</span> WHAT: &#123;</span><br><span class="line">                Bitmap bm = (Bitmap) msg.obj;</span><br><span class="line">                <span class="keyword">if</span> (bm == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                ivCover.setImageBitmap(bm);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到我们创建了一个handler（主线程）来接收message，在收到message，要先判断what，然后再取出数据，使用数据，在这里更新UI是没有问题的。</p>
 <h4 id="message的获取"><a href="#message的获取" class="headerlink" title="message的获取"></a>message的获取</h4><p>这里可以看到上面我们创建Message的时候，使用的是<br><code>java
- Message message = Message.obtain();</code><br>为什么不直接new一个Message呢？我们看下obtain的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Message <span class="title">obtain</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">synchronized</span> (sPoolSync) &#123;</div><div class="line">            <span class="keyword">if</span> (sPool != <span class="keyword">null</span>) &#123;</div><div class="line">                Message m = sPool;</div><div class="line">                sPool = m.next;</div><div class="line">                m.next = <span class="keyword">null</span>;</div><div class="line">                m.flags = <span class="number">0</span>; <span class="comment">// clear in-use flag</span></div><div class="line">                sPoolSize--;</div><div class="line">                <span class="keyword">return</span> m;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Message();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+ Message message = Message.obtain();</code><br>为什么不直接new一个Message呢？我们看下obtain的代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Message <span class="title">obtain</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (sPoolSync) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sPool != <span class="keyword">null</span>) &#123;</span><br><span class="line">                Message m = sPool;</span><br><span class="line">                sPool = m.next;</span><br><span class="line">                m.next = <span class="keyword">null</span>;</span><br><span class="line">                m.flags = <span class="number">0</span>; <span class="comment">// clear in-use flag</span></span><br><span class="line">                sPoolSize--;</span><br><span class="line">                <span class="keyword">return</span> m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Message();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>这个方法有个描述</p>
 <blockquote>
 <p>Return a new Message instance from the global pool. Allows us to<br>avoid allocating new objects in many cases.</p>
@@ -468,7 +468,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -510,7 +510,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -521,9 +521,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -534,7 +532,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -556,7 +554,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -640,10 +638,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

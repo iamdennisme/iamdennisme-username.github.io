@@ -6,18 +6,18 @@
 
 
 <html class="theme-next mist use-motion" lang="en">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -35,7 +35,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -69,21 +69,21 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Android,AndroidDemo," />
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Android,AndroidDemo,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1">
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-  <link rel="canonical" href="http://dennisce.com/2014/11/21/android/android-Spinner/"/>
+  <link rel="canonical" href="http://dennisce.com/2014/11/21/android/android-Spinner/">
 
 
 
@@ -190,7 +190,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">dennisce</span>
         <span class="logo-line-after"><i></i></span>
@@ -220,7 +220,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             Home
           </a>
@@ -230,7 +230,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             Archives
           </a>
@@ -240,7 +240,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             Tags
           </a>
@@ -279,7 +279,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Dennis huang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content>
       <meta itemprop="image" content="http://o8zwyxgy9.bkt.clouddn.com/avatar.png">
     </span>
 
@@ -315,7 +315,7 @@
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -376,31 +376,31 @@
 <p>提供一个下拉选单，用于在一堆数据列表中选择一个值，未展开显示当前选中的值，点击后出现选单，展示所有可选择的值，可选择新值。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner1.gif" alt="spinner"></p>
 <p>#简单实现</p>
 <p>##xml</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">Spinner</span></span></div><div class="line"><span class="tag">   <span class="attr">android:id</span>=<span class="string">"@+id/spinner"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></div><div class="line"><span class="tag">   <span class="attr">android:entries</span>=<span class="string">"@array/phone"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Spinner</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:id</span>=<span class="string">"@+id/spinner"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:entries</span>=<span class="string">"@array/phone"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 <p>一些属性：</p>
 <ul>
 <li><p>android:spinnerMode=”dialog”:<br> 这个属性定义了spinner的展现方式，有两种<em>dialog</em>和<em>dropdown</em>。分别是弹窗和下拉</p>
 <p> dialog</p>
-<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner2.gif" alt=""></p>
+<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner2.gif" alt></p>
 <p> dropdown</p>
-<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner3.gif" alt=""></p>
+<p> <img src="http://o8zwyxgy9.bkt.clouddn.com/spinner3.gif" alt></p>
 </li>
 <li><p><code>android:entries</code>其实是定义了spinner菜单里的数据，这里指向了array。</p>
- <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"phone"</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>android<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>iPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>windowsPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></div></pre></td></tr></table></figure>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">"phone"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>android<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>iPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">item</span>&gt;</span>windowsPhone<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>但其实在java代码中也可以添加数据。先简单实现</p>
 <ul>
-<li><code>android:prompt=&quot;@string/title&quot;</code>如果是dialog模式，显示tiitle<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner4.png" alt=""></li>
+<li><code>android:prompt=&quot;@string/title&quot;</code>如果是dialog模式，显示tiitle<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner4.png" alt></li>
 </ul>
 <p>##java</p>
 <p>简单使用的话，就一个<code>setOnItemSelectedListener</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">spinner.setOnItemSelectedListener(<span class="keyword">new</span> AdapterView.OnItemSelectedListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemSelected</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onItemSelected"</span>);</div><div class="line">                String[] arrs = getResources().getStringArray(R.array.phone);</div><div class="line">                ToastUtil.show(mContext, arrs[position]);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNothingSelected</span><span class="params">(AdapterView&lt;?&gt; parent)</span> </span>&#123;</div><div class="line">                Log.d(TAG, <span class="string">"onNothingSelected"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">spinner.setOnItemSelectedListener(<span class="keyword">new</span> AdapterView.OnItemSelectedListener() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onItemSelected</span><span class="params">(AdapterView&lt;?&gt; parent, View view, <span class="keyword">int</span> position, <span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onItemSelected"</span>);</span><br><span class="line">                String[] arrs = getResources().getStringArray(R.array.phone);</span><br><span class="line">                ToastUtil.show(mContext, arrs[position]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNothingSelected</span><span class="params">(AdapterView&lt;?&gt; parent)</span> </span>&#123;</span><br><span class="line">                Log.d(TAG, <span class="string">"onNothingSelected"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
 <p>可以看到两个回调<code>onItemSelected</code>和<code>onNothingSelected</code></p>
 <ul>
 <li><p>关于<code>onItemSelected</code><br>这个方法是在你改变了spinner的选择值时触发。两个注意点：</p>
 <ul>
-<li>默认值也会触发这个回调。在spinner实现完成，就算没有主动去选择值，但会默认显示一个，这个时候也会触发回调.<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner5.png" alt=""></li>
+<li>默认值也会触发这个回调。在spinner实现完成，就算没有主动去选择值，但会默认显示一个，这个时候也会触发回调.<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner5.png" alt></li>
 <li>如果你对spinner进行了操作，但是并没有改变当前spinner的值，那是不会触发这个回调的。</li>
 </ul>
 </li>
@@ -408,20 +408,20 @@
 </ul>
 <p>#Spinner的Adapter<br>上面我们说到，其实可以不用xml来绑定spinner的数据，那就需要adapter来绑定数据</p>
 <p>##实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ArrayAdapter&lt;String&gt; adapter =<span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>,android.R.layout.simple_spinner_item,data); </div><div class="line"></div><div class="line">adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</div><div class="line">spinner.setAdapter(adapter);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayAdapter&lt;String&gt; adapter =<span class="keyword">new</span> ArrayAdapter&lt;&gt;(<span class="keyword">this</span>,android.R.layout.simple_spinner_item,data); </span><br><span class="line"></span><br><span class="line">adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);</span><br><span class="line">spinner.setAdapter(adapter);</span><br></pre></td></tr></table></figure>
 <p>是不是感觉好面熟，这个套路，对，简直和listview一模一样对不对。</p>
 <p>but，你肯定发现了。<code>setDropDownViewResource</code>是什么，好吧<br>官方解释</p>
 <p>Sets the layout resource to create the drop down views.<br>因为adapter的第二个参数设置的样式是其没有展开时的样式，而这里是设置下拉展开的样式。</p>
-<p>对，你是不是发现了什么，我们可以通过<code>setDropDownViewResource</code>来自定义spinner的样式。举个栗子，如果你不设置样式。样式是这样的。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner6.png" alt=""><br>如果加上样式呢？<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner7.png" alt=""><br>我们设置的其实就是android默认实现的一个样式<code>android.R.layout.simple_spinner_dropdown_item</code></p>
+<p>对，你是不是发现了什么，我们可以通过<code>setDropDownViewResource</code>来自定义spinner的样式。举个栗子，如果你不设置样式。样式是这样的。<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner6.png" alt><br>如果加上样式呢？<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner7.png" alt><br>我们设置的其实就是android默认实现的一个样式<code>android.R.layout.simple_spinner_dropdown_item</code></p>
 <p>当然，我们也可以自己实现自己的样式。<br>其实和listview自定义adapter是一样的，对，一模一样哒，</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpinnerAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> List&lt;User&gt; data;</div><div class="line">    <span class="keyword">private</span> Context mContext;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SpinnerAdapter</span><span class="params">(Context mContext, List&lt;User&gt; data)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.data = data;</div><div class="line">        <span class="keyword">this</span>.mContext = mContext;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data.size();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> data.get(position);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> position;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</div><div class="line">        ViewHolder holder;</div><div class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</div><div class="line">            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_user, <span class="keyword">null</span>);</div><div class="line">            holder = <span class="keyword">new</span> ViewHolder();</div><div class="line">            holder.ivAvatar = (ImageView) convertView.findViewById(R.id.iv_avatar);</div><div class="line">            holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);</div><div class="line">            convertView.setTag(holder);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            holder = (ViewHolder) convertView.getTag();</div><div class="line">        &#125;</div><div class="line">        User user = data.get(position);</div><div class="line">        <span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</div><div class="line">            holder.ivAvatar.setImageResource(user.getAvator());</div><div class="line">            <span class="keyword">if</span> (user.getName() != <span class="keyword">null</span>) &#123;</div><div class="line">                holder.tvName.setText(user.getName());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> convertView;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</div><div class="line">        ImageView ivAvatar;</div><div class="line">        TextView tvName;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这里定义了一个用户的头像和一个用户名的样式。<br>效果如图<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner8.png" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpinnerAdapter</span> <span class="keyword">extends</span> <span class="title">BaseAdapter</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;User&gt; data;</span><br><span class="line">    <span class="keyword">private</span> Context mContext;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">SpinnerAdapter</span><span class="params">(Context mContext, List&lt;User&gt; data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.data = data;</span><br><span class="line">        <span class="keyword">this</span>.mContext = mContext;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">getItem</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> data.get(position);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getItemId</span><span class="params">(<span class="keyword">int</span> position)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> position;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>&#123;</span><br><span class="line">        ViewHolder holder;</span><br><span class="line">        <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) &#123;</span><br><span class="line">            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_spinner_user, <span class="keyword">null</span>);</span><br><span class="line">            holder = <span class="keyword">new</span> ViewHolder();</span><br><span class="line">            holder.ivAvatar = (ImageView) convertView.findViewById(R.id.iv_avatar);</span><br><span class="line">            holder.tvName = (TextView) convertView.findViewById(R.id.tv_name);</span><br><span class="line">            convertView.setTag(holder);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            holder = (ViewHolder) convertView.getTag();</span><br><span class="line">        &#125;</span><br><span class="line">        User user = data.get(position);</span><br><span class="line">        <span class="keyword">if</span> (user != <span class="keyword">null</span>) &#123;</span><br><span class="line">            holder.ivAvatar.setImageResource(user.getAvator());</span><br><span class="line">            <span class="keyword">if</span> (user.getName() != <span class="keyword">null</span>) &#123;</span><br><span class="line">                holder.tvName.setText(user.getName());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> convertView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>&#123;</span><br><span class="line">        ImageView ivAvatar;</span><br><span class="line">        TextView tvName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里定义了一个用户的头像和一个用户名的样式。<br>效果如图<br><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner8.png" alt></p>
 <p>之前我们提到一个回调，<code>onNothingSelected</code>，这个方法的触发机制其实是在你的adapter的数据为空时回调。<br>添加一个按钮</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">btnClean.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</div><div class="line">           <span class="meta">@Override</span></div><div class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</div><div class="line">               dataUser.removeAll(dataUser);</div><div class="line">               spinnerAdapter.notifyDataSetChanged();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">btnClean.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">               dataUser.removeAll(dataUser);</span><br><span class="line">               spinnerAdapter.notifyDataSetChanged();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;);</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
-<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner9.gif" alt=""></p>
+<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner9.gif" alt></p>
 <p>同时，可以看到<code>onNothingSelected</code>触发。</p>
-<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner10.png" alt=""></p>
+<p><img src="http://o8zwyxgy9.bkt.clouddn.com/spinner10.png" alt></p>
 
       
     </div>
@@ -507,7 +507,7 @@
   <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
   <a class="jiathis_counter_style"></a>
 </div>
-<script type="text/javascript" >
+<script type="text/javascript">
   var jiathis_config={
     hideMore:false
   }
@@ -551,9 +551,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png"
-               alt="Dennis huang" />
+          <img class="site-author-image" itemprop="image" src="http://o8zwyxgy9.bkt.clouddn.com/avatar.png" alt="Dennis huang">
           <p class="site-author-name" itemprop="name">Dennis huang</p>
            
               <p class="site-description motion-element" itemprop="description">just a blog</p>
@@ -564,7 +562,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -586,7 +584,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -654,10 +652,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
